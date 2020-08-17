@@ -1,0 +1,439 @@
+
+.column-bill{
+    display: flex;
+    align-items: flex-end;
+}
+.section{
+    @media screen and (max-width: 768px), print{
+        padding: 3rem 0.85rem;
+    }
+}
+.file-label{
+    flex: 1;
+}
+.file-name{
+    max-width: 100%;
+    width: 100%;
+}
+footer{
+    .section{
+        background: #f1f1f1
+    }
+}
+.absolute-footer{
+    background: #03d1b2;
+    padding: 10px 0;
+    text-align: right;
+    height: 40px;
+    p{
+        margin-bottom: 0;
+        display: inline-flex;
+    }
+    .wrap-content{
+        display: flex;
+        align-items: center;
+        vertical-align: middle;
+        justify-content: center;
+    
+    }
+}
+.top__slider{
+    // .owl-carousel .owl-item img{
+    //     width: auto;
+    // }
+    position: relative;
+    overflow: hidden;
+    .overlay{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        z-index: 11;
+        justify-content: center;
+        // background: linear-gradient(45deg, rgb(0 0 0 / 52%), rgb(3 209 178 / 18%));
+    }
+    .slogan h3{
+        font-weight: 200;
+        letter-spacing: 1rem;
+      
+    }
+    p.sub{
+        font-weight: 300;
+        letter-spacing: 3px;
+        margin: 0 auto;
+        max-width: 480px;
+        position: relative !important;
+    }
+    @media screen and (max-width: 768px), print {
+        .item{
+            img{
+                height: 450px;
+                object-fit: cover;
+            }
+        }
+    }
+   
+}
+.animation__area{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 9
+}
+.box__area{
+    width: 100%;
+    height: 100%
+}
+.box__area li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 35px;
+    height: 35px;
+    background: rgba(255,255,255,.3);
+    animation: animate 20s linear infinite;
+    bottom: -180px;
+}
+.box__area li:nth-child(1){
+    left: 86%;
+    width: 50px;
+    height: 50px;
+    animation-delay: 10s;
+    animation-duration: 12s;
+}
+.box__area li:nth-child(2){
+    left: 26%;
+    width: 45px;
+    height: 45px;
+    animation-delay: 2s;
+}
+.box__area li:nth-child(3){
+    left: 76%;
+    width: 30px;
+    height: 30px;
+    animation-delay: 5s;
+    animation-duration: 15s;
+}
+.box__area li:nth-child(4){
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 3s;
+}
+.box__area li:nth-child(5){
+    left: 36%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 6s;
+    animation-duration: 18s;
+}
+.box__area li:nth-child(6){
+    left: 16%;
+    width: 40px;
+    height: 40px;
+    animation-delay: 4s;
+    animation-duration: 14s;
+}
+.box__area li:nth-child(7){
+    left: 18%;
+    width: 50px;
+    height: 50px;
+    animation-delay: 8s;
+    animation-duration: 18s;
+}
+.box__area li:nth-child(8){
+    left: 68%;
+    width: 35px;
+    height: 35px;
+    animation-delay: 10s;
+    animation-duration: 15s;
+}
+
+@keyframes animate{
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100%{
+        transform: translateY(-600px) rotate(360deg);
+        opacity: 0;
+    }
+}
+.column-footer-header{
+    hr{
+        max-width: 140px;
+        margin: .5rem auto 1rem;
+        background: #cccccc;
+        height: 2px;
+    }
+}
+.boxes-flow-work{
+    .box{
+        height: 100%;
+        box-shadow: none;
+        padding: 1rem
+   
+    }
+    .box-image{
+        margin: -1.25rem -1.25rem 1rem;
+        background: #03d1b2;
+        padding: 2.25rem;
+    }
+    @media screen and (max-width: 559px), print{
+        .box-image{
+            margin: 0;
+            width: 120px;
+            padding: 1.25rem;
+          
+        }
+        .box{
+            display: flex;
+            padding: 0.85rem;
+            border: 1px solid #03d1b2;
+        }
+        .box-content{
+            padding-left: 1rem;
+            flex: 1;
+        }
+    }
+    .box-content{
+        text-align: center;
+    }
+}
+.section-store{
+    .content-section{
+        background-image: url('../images/md-map.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    @media screen and (min-width: 1040px), print{
+          
+           .content-section{
+            padding: 30px 
+        }
+    }
+}
+.boxes-what{
+    .box{
+        background-color: transparent;
+        box-shadow: none;
+        color: #fff;
+    }
+}
+.boxes-store{
+    .box-image{
+        padding-top: 55.25%;
+        position: relative;
+        margin: -1.25rem -1.25rem 0;
+
+        img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .box-content{
+        .title{
+            margin: 1rem 0 0.5rem;
+        }
+    }
+}
+.box-info{
+    line-height: 2.1;
+}
+.is-float-right{
+    float: right;
+}
+.questionnaire__item{
+    display: flex;
+    line-height: 1.5;
+    justify-content: space-between;
+    align-items: center;
+
+    .questionnaire__title{
+        flex: 1;
+    }
+    span.title{
+        width: 90px;
+    }
+}
+.survey__description{
+    padding: 1.25rem;
+    border: 1px solid #03d1b2;
+    line-height: 2;
+    background-color: rgb(3 209 178 / 8%);
+}
+.question__lists{
+    line-height: 2;
+}
+.question__title{
+    margin-bottom: 10px;
+}
+.navbar-item {
+    &.nav-primary{
+        background: #03d1b2;
+        color: #fff;
+        span.icon{
+            color: #fff
+        }
+    }
+    
+}
+.store__sliders{
+    max-width: 80%;
+    margin: auto;
+}
+
+.animated  {
+    -webkit-animation-duration : 1000 ms  ;
+    animation-duration : 1000 ms  ;
+    -webkit-animation-fill-mode : both  ;
+    animation-fill-mode : both  ;
+  }  
+  /* .owl-animated-out - only for current item */ 
+  /* This is very important class. Use z-index if you want move Out item above In item */ 
+  .owl-animated-out {
+    z-index : 1 
+     }
+  /* .owl-animated-in - only for upcoming item
+  /* This is very important class. Use z-index if you want move In item above Out item */ 
+  .owl-animated-in {
+    z-index : 0 
+     }
+  /* .fadeOut is style taken from Animation.css and this is how it looks in owl.carousel.css:  */ 
+  .fadeOut  {
+    -webkit-animation-name : fadeOut  ;
+    animation-name : fadeOut  ;
+  }  
+  @-webkit-keyframes  fadeOut  {
+    0% {
+      opacity : 1   ;
+    }  
+    100% {
+      opacity : 0   ;
+    }  
+  }
+  @keyframes  fadeOut  {
+    0% {
+      opacity : 1   ;
+    }  
+    100% {
+      opacity : 0   ;
+    }  
+  }
+
+@media screen and (max-width: 768px), print {
+    .is-size-1{
+        font-size: 2rem !important;
+    }
+    .is-size-2{
+        font-size: 1.8rem !important;
+    }
+    .is-size-3{
+        font-size: 1.6rem !important;
+    }
+    .is-size-4{
+        font-size: 1.3rem !important;
+    }
+    .is-size-5{
+        font-size: 1rem !important;
+    }
+}
+@media screen and (min-width: 1024px), print{
+    #mobileMenu{
+        display: none;
+    }
+}
+
+.page-404{
+    background-image: url('../images/bg-guest-home.jpg');
+    background-size: cover;
+    background-position: top center;
+    min-height: calc(100vh - 318px);
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+.page-404 h1{
+    font-size: 10rem;
+    opacity: .6;
+}
+.survey__header{
+    background-image: url('../images/bg-guest-home.jpg');
+    background-size: cover;
+    background-position: top center;
+    .hero-body{
+        padding: 10rem 0 3rem;
+    }
+}
+.header-profile{
+
+    background-image: url('../images/bg-guest-home.jpg');
+    background-size: cover;
+    background-position: top center;
+    padding: 10rem 0 0;
+    .hero-body{
+        padding: 0 !important
+    }
+    .wrap__name{
+        display: flex;
+        margin: auto;
+        width: 150px;
+        height: 150px;
+        background: #03d1b2;
+        border-radius: 50%;
+        margin-bottom: -30px;
+        border: 5px solid;
+        box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+        justify-content: center;
+        vertical-align: middle;
+        align-items: center;
+    }
+    @media screen and (max-width: 1039px), print{
+        h1{
+            font-size: 1.5rem;
+        }
+    }
+    @media screen and (min-width: 1040px), print{
+
+        padding: 15rem 0 0;
+        .wrap__name{
+            display: flex;
+            margin: auto;
+            width: 200px;
+            height: 200px;
+            background: #03d1b2;
+            border-radius: 50%;
+            margin-bottom: -30px;
+            border: 5px solid;
+            box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+            justify-content: center;
+            vertical-align: middle;
+            align-items: center;
+        }
+    }
+}
+.nav-lang-mobile{
+    .navbar-dropdown{
+     
+        position: absolute;
+        top: 52px;
+        background: #fff;
+        z-index: 999;
+        border-radius: 5px;
+    }
+    &.active {
+        .navbar-dropdown{
+            display: block !important;
+        }
+    }
+}

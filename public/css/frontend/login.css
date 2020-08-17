@@ -1,0 +1,42 @@
+.wrap-login-page {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("../../img/bg-guest-home.jpg");
+  background-size: cover;
+  background-position: top center;
+  padding: 10rem 0;
+}
+@media screen and (min-width: 1024px) {
+  .wrap-login-page {
+    min-height: calc(100vh - 318px);
+  }
+}
+.wrap-login-page .card {
+  max-width: 420px;
+  margin: auto;
+}
+
+.card-header {
+  justify-content: center;
+  padding: 15px 0;
+  box-shadow: none;
+  background-color: #01d2b2 !important;
+}
+.card-header h1 {
+  color: #fff;
+}
+
+.section__register {
+  padding: 0;
+}
+.section__register .hero-body {
+  background: url("../../images/bg-register.jpg");
+  background-size: cover;
+  background-position: top;
+  padding: 12rem 1.5rem 8rem;
+}
+.section__register .card {
+  margin-top: -57px;
+}

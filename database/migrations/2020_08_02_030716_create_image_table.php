@@ -1,0 +1,44 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateImageTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('image', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable();
+            $table->json('url');
+            $table->bigInteger('imageable_id')->unsigned();
+            $table->string('imageable_type');
+            $table->timestamps();
+        });
+        // Schema::create('image_translation', function (Blueprint $table) {
+        //     $table->bigInteger('image_id')->unsigned();
+        //     $table->string('locale')->index();
+        //     $table->json('url');
+        //     $table->string('name')->nullable();
+        //     $table->unique(['image_id','locale']);
+        //     $table->foreign('image_id')->references('id')->on('image')->onDelete('cascade');
+        //     $table->timestamps();
+        // });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('image');
+    }
+}
