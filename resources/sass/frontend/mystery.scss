@@ -27,7 +27,10 @@ footer{
     height: 40px;
     p{
         margin-bottom: 0;
-        display: inline-flex;
+        display: inline-block;
+        image{
+            display: block;
+        }
     }
     .wrap-content{
         display: flex;

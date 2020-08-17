@@ -14808,7 +14808,10 @@ footer .section {
 }
 .absolute-footer p {
   margin-bottom: 0;
-  display: inline-flex;
+  display: inline-block;
+}
+.absolute-footer p image {
+  display: block;
 }
 .absolute-footer .wrap-content {
   display: flex;
