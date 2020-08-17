@@ -64,20 +64,34 @@ class UserRegisterController extends Controller
             }
             $password = $str;
         }
+        $user = new User();
 
-        $user = User::create([
-            'name'              =>  $data_user['name'],
-            'email'             =>  $data_user['email'],
-            'address'           =>  $request->address,
-            'store_id'          =>  $data_user['store'],
-            'phone_number'      =>  $data_user['phone_number'],
-            'bank_name'         =>  $data_user['bank_name'],
-            'bank_number'       =>  $data_user['card_number'],
-            'bank_address'      =>  $data_user['bank_address'],
-            'password'          =>  Hash::make('password'),
-            'token'             =>  Str::random(80),
-            'actived'           =>  0,
-        ]);
+        $user->name              =  $data_user['name'];
+        $user->email             =  $data_user['email'];
+        $user->address           =  $request->address;
+        $user->store_id          =  $data_user['store'];
+        $user->phone_number      =  $data_user['phone_number'];
+        $user->bank_name         =  $data_user['bank_name'];
+        $user->bank_number       =  $data_user['card_number'];
+        $user->bank_address      =  $data_user['bank_address'];
+        $user->password          =  Hash::make('password');
+        $user->token             =  Str::random(80);
+        $user->actived           =  0;
+
+        $user->save();
+        // $user = User::create([
+        //     'name'              =>  $data_user['name'],
+        //     'email'             =>  $data_user['email'],
+        //     'address'           =>  $request->address,
+        //     'store_id'          =>  $data_user['store'],
+        //     'phone_number'      =>  $data_user['phone_number'],
+        //     'bank_name'         =>  $data_user['bank_name'],
+        //     'bank_number'       =>  $data_user['card_number'],
+        //     'bank_address'      =>  $data_user['bank_address'],
+        //     'password'          =>  Hash::make('password'),
+        //     'token'             =>  Str::random(80),
+        //     'actived'           =>  0,
+        // ]);
 
 
         //image

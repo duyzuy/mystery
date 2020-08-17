@@ -48,6 +48,7 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
+  
     
         //
         $request->validate([
@@ -84,14 +85,14 @@ class StoreController extends Controller
             'city_id'           =>  $request->city,
             'store_image'       =>  $fileName,
             'vi' => [
-                'store_name'            => $request->input('vi_store_name'), 
-                'store_address'         => $request->input('vi_store_address'), 
-                'store_description'     => $request->input('vi_store_description'), 
+                'store_name'            => $request->vi_store_name, 
+                'store_address'         => $request->vi_store_address, 
+                'store_description'     => $request->vi_store_description, 
             ],
             'en' => [
-                'store_name'            => $request->input('en_store_name'), 
-                'store_address'         => $request->input('en_store_address'), 
-                'store_description'     => $request->input('en_store_description'), 
+                'store_name'            => $request->en_store_name, 
+                'store_address'         => $request->en_store_address, 
+                'store_description'     => $request->en_store_description, 
             ],
         ];
 
@@ -137,6 +138,7 @@ class StoreController extends Controller
     public function update(Request $request, $id)
     {
         //
+ 
         $request->validate([
             'website'           =>  'required',
             'city'              =>  'required',
@@ -148,40 +150,6 @@ class StoreController extends Controller
         ]);
 
    
-
-        if($request->hasFile('store_image')){
-
-            $image = $request->file('store_image');
-            $extension = $image->getClientOriginalExtension();
-            $imageName = $image->getClientOriginalName();
-
-            $imageName = pathinfo($imageName, PATHINFO_FILENAME); //remove extension
-
-            $imgSlug = Str::slug($imageName, '-'); //create image Slug
-
-            $fileName = $imgSlug . '.' . $extension;
-
-            Storage::putFileAs('public/stores', $request->file('store_image'), $fileName); //save in storage directory
-            // Image::make($image)->resize(300, 300)->save( storage_path('uploads/store/' . $filename ) );
-            // $post->image()->create(['url' => $fileName]);
-
-            $store_data = [
-                'store_website'     =>  $request->website,
-                'city_id'           =>  $request->city,
-                'store_image'       =>  $fileName,
-                'vi' => [
-                    'store_name'            => $request->input('vi_store_name'), 
-                    'store_address'         => $request->input('vi_store_address'), 
-                    'store_description'     => $request->input('vi_store_description'), 
-                ],
-                'en' => [
-                    'store_name'            => $request->input('en_store_name'), 
-                    'store_address'         => $request->input('en_store_address'), 
-                    'store_description'     => $request->input('en_store_description'), 
-                ],
-            ];
-        }
-
         $store_data = [
             'store_website'     =>  $request->website,
             'city_id'           =>  $request->city,
@@ -196,6 +164,29 @@ class StoreController extends Controller
                 'store_description'     => $request->input('en_store_description'), 
             ],
         ];
+
+
+        if($request->hasFile('store_image')){
+
+            $image = $request->file('store_image');
+            $extension = $image->getClientOriginalExtension();
+            $imageName = $image->getClientOriginalName();
+
+            $imageName = pathinfo($imageName, PATHINFO_FILENAME); //remove extension
+
+            $imgSlug = Str::slug($imageName, '-'); //create image Slug
+
+            $fileName = $imgSlug . Carbon::now()->timestamp . '.' . $extension;
+
+            Storage::putFileAs('public/stores', $request->file('store_image'), $fileName); //save in storage directory
+            // Image::make($image)->resize(300, 300)->save( storage_path('uploads/store/' . $filename ) );
+            // $post->image()->create(['url' => $fileName]);
+
+            $store_data['store_image'] = $fileName;
+            
+        }
+
+
 
         $store = Store::where('id', $id)->firstOrFail();
         $store->update($store_data);

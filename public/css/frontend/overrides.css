@@ -25,7 +25,7 @@
 @media screen and (min-width: 1024px) {
   #header {
     border-bottom: 1px solid rgba(3, 209, 178, 0.2);
-    position: fixed;
+    position: absolute;
   }
   #header .navbar-item, #header .navbar-link {
     color: #fff;

@@ -73,7 +73,12 @@
                         <div class="form-group @error('store_image') is-invalid @enderror">
                             <label for="store_image">Store image</label>
                             <div class="image-preview mb-2">
-                                <img src="{{ asset('public/storage/stores') . '/' . $store->store_image }}" alt="store image" width="200"/>
+                                @if($store->store_image == 'default.jpg')
+                                <img src="{{ asset('images') . '/' . $store->store_image }}" alt="store image" width="200"/>
+                                @else
+                                <img src="{{ asset('storage/stores') . '/' . $store->store_image }}" alt="store image" width="200"/>
+
+                                @endif
                             </div>
                             <div class="input-group">
                                 <div class="custom-file">
@@ -119,7 +124,7 @@
                                             <textarea id="vi_summernote" class="textarea__summernote" name="vi_store_description">{{ $store->translate('vi')->store_description }}</textarea>
                                         </div>
                                     </div>
-                                    
+                                   
                                   </div>
                             </div>
                             <div class="col-12 col-md-6">

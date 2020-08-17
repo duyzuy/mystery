@@ -88,7 +88,7 @@ Route::prefix('manage')->group(function() {
 
         Route::get('user/export/exportList&user={status}', 'AdminController@exportExcel')->name('manage.user.export');
 
-       
+
 
         //Questions Group 
         Route::get('questiongroup', 'QuestionGroupsController@index')->name('manage.questiongroup.index');

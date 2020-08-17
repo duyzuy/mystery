@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\MailController;
 
+use App\Test;
+
 class AdminController extends Controller
 {
     //
@@ -140,6 +142,12 @@ class AdminController extends Controller
         }
         
     }
+
+    public function indexTest(){
+        return view('backend.test.index');
+    }
+
+
 
 
 }
