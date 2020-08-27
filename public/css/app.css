@@ -15094,11 +15094,6 @@ footer .section {
   color: #fff;
 }
 
-.store__sliders {
-  max-width: 80%;
-  margin: auto;
-}
-
 .animated {
   -webkit-animation-duration: 1000 ms;
   animation-duration: 1000 ms;

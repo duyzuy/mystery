@@ -45,15 +45,6 @@
                         <div class="row">
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
-                                    <label>Website</label>
-                                    <input type="text" class="form-control @error('website') is-invalid @enderror" name="website" placeholder="Ex: http://example.com" value="{{ old('website') }}">
-                                    @error('website')
-                                        <span class="error invalid-feedback" role="alert">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <div class="form-group">
                                     <label>City</label>
                                     <select class="form-control @error('city') is-invalid @enderror" name="city">
                                         <option value="">Select the city</option>
@@ -64,24 +55,52 @@
                                     @error('city')
                                         <span class="error invalid-feedback" role="alert">{{ $message }}</span>
                                     @enderror
-                                  </div>
-                            </div>
-                        </div>
-                        <div class="form-group @error('store_image') is-invalid @enderror">
-                            <label for="store_image">Store image</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="store_image" name="store_image">
-                                    <label class="custom-file-label" for="store_image">Choose image</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text">Upload</span>
                                 </div>
                             </div>
-                            @error('store_image')
-                                <span class="error invalid-feedback" role="alert">{{ $message }}</span>
-                            @enderror
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label>Brand</label>
+                                    <select class="form-control @error('brand') is-invalid @enderror" name="brand">
+                                        <option value="">Select brand</option>
+                                        @foreach($brands as $brand)
+                                            <option {{ old('brand') == $brand->id ? 'selected' : '' }} value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('brand')
+                                        <span class="error invalid-feedback" role="alert">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Website</label>
+                                    <input type="text" class="form-control @error('website') is-invalid @enderror" name="website" placeholder="Ex: http://example.com" value="{{ old('website') }}">
+                                    @error('website')
+                                        <span class="error invalid-feedback" role="alert">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group @error('store_image') is-invalid @enderror">
+                                    <label for="store_image">Store image</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="store_image" name="store_image">
+                                            <label class="custom-file-label" for="store_image">Choose image</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Upload</span>
+                                        </div>
+                                    </div>
+                                    @error('store_image')
+                                        <span class="error invalid-feedback" role="alert">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        
                        
                       
                         <hr/>

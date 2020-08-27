@@ -16,7 +16,7 @@ class City extends Model implements TranslatableContract
     //
 
     protected $fillable = [
-        'city_name'
+        'city_name', 'region_id'
     ];
 
     public $translatedAttributes = ['name'];
@@ -29,5 +29,13 @@ class City extends Model implements TranslatableContract
     public function stores(){
 
         return $this->hasMany('App\Store', 'city_id', 'id');
+    }
+
+    public function region(){
+        return $this->belongsTo(Region::class);
+    }
+    
+    public function brands(){
+        return $this->belongsTo(Store::class, 'city_id', 'brand_id' );
     }
 }

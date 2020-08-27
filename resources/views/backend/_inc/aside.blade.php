@@ -94,15 +94,21 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('brands.index') }}" class="nav-link  {{ Request::is('manage/brands*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>Brands</p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('stores.index') }}" class="nav-link  {{ Request::is('manage/store*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
-              <p>Store</p>
+              <p>Restaurents</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{ route('manage.user.list') }}" class="nav-link  {{ Request::is('manage/user*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-user"></i>
-              <p>Users</p>
+              <p>Users @if(count($user_notactive) != 0)<span class="right badge badge-danger">{{ count($user_notactive) }}</span> @endif</p>
             </a>
           </li>
           <li class="nav-header">REPORT</li>
@@ -110,6 +116,12 @@
             <a href="{{ route('manage.questionnaire.report') }}" class="nav-link {{ Request::is('manage/report/questionnaires*') ? 'active' : '' }}">  
               <i class="fas fa-city nav-icon"></i>
               <p>Questionnaire</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('manage.survey.responses') }}" class="nav-link {{ Request::is('manage/report/responses*') ? 'active' : '' }}">  
+              <i class="fas fa-city nav-icon"></i>
+              <p>Responses @if(count($response_prevew) != 0)<span class="right badge badge-danger">{{ count($response_prevew) }}</span> @endif</p>
             </a>
           </li>
          

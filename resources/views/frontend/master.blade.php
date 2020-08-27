@@ -33,9 +33,10 @@
     @stack('styles')
 </head>
 <body>
+    
     <div id="app">
         <div class="wrapper">
-            @include ('partials.messages')
+          
             <header id="header" class="@if(Route::currentRouteName() == 'home')home @endif">
                 <div class="container">
                     @include('frontend._include.header')
@@ -57,5 +58,6 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 @stack('scripts')
+@include ('partials.messages')
 </body>
 </html>

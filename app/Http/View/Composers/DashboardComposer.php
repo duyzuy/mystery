@@ -16,6 +16,7 @@ class DashboardComposer
             'user_active'       => User::where('actived', 1)->get(),
             'user_notactive'    => User::where('actived', 0)->get(),
             'user_response'     =>  Survey::all(),
+            'response_prevew'   =>  Survey::where('viewed', 0)->get(),
         ]);
     }
     

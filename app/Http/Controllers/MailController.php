@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\SignupEmail;
 use App\Mail\VerifyEmail;
 use Illuminate\Http\Request;
+use App\Mail\NewUserRegister;
 use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
@@ -19,7 +20,10 @@ class MailController extends Controller
             'email' =>  $email,
             'token' =>  $token
         ];
+        //send to admin
         Mail::to('vutruongduy2109@gmail.com')->send(new SignupEmail($data));
+        //send to user
+        Mail::to($email)->send(new NewUserRegister($data));
     }
 
     /*
@@ -37,5 +41,14 @@ class MailController extends Controller
         ];
         Mail::to($email)->send(new VerifyEmail($data));
     }
+
+    // public static function sendToInformToNewUser($name, $email){
+    //     $data = [
+    //         'name'      =>  $name,
+    //         'email'     =>  $email,
+            
+    //     ];
+       
+    // }
 
 }

@@ -174,36 +174,19 @@
 </section> 
 <section id="section__store" class="section section-store">
     <div class="container">
-        <div class="header-section m-t-25 m-b-30">
+        <div class="header-section m-t-25">
             <h4 class="is-size-3 has-text-centered is-uppercase">@lang('page.homePage.whereWe')</h4>
         </div>
         <div class="content-section">
             <div class="boxes-store">
-                <div class="store__sliders">
-                    <div class="wrap-slider">
-                        <div class="owl-carousel owl-theme">
-                            @foreach($stores as $key => $store)
-                            <div class="item">
-                                <div class="box">
-                                    <div class="box-image">
-                                        <img src="{{ asset('storage/stores/' . $store->store_image) }}" />
-                                    </div>
-                                    <div class="box-content">
-                                        <p class="title is-size-4">{{ $store->translate()->store_name }}</p>
-                                        <p>
-                                            <span class="icon"><i class="fas fa-building"></i></span> @lang('page.storeCityTitle'): {{ $store->city->translate()->name }}</p>
-                                        <p>
-                                            <span class="icon"><i class="fas fa-map-marker-alt"></i></span> @lang('page.storeAdressTitle'):  {{ $store->translate()->store_address }}</p>
-                                        <a href="{{ $store->store_website }}" class=" button is-outlined is-small is-rounded is-info mt-5"><span>@lang('page.button.viewSite')</span> <span class="icon"><i class="fas fa-chevron-right"></i></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                          
-                        </div>
-                    </div>
-                  
+
+                <div class="wrap__restaurent">
+                    <restaurent 
+                    :lang="getLang"
+                    :translate="getTranslation"
+                    ></restaurent> 
                 </div>
+
             </div>
           
         </div>
@@ -214,27 +197,39 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('js/parallax.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/parallax.js') }}"></script>
     <script>
-        $('.store__sliders .owl-carousel').owlCarousel({
-            loop:true,
-            margin:30,
-            autoplay:true,
-            nav:true,
-            items: 1,
-            responsive:{
-                420:{
-                    items:1
+
+        const app = new Vue({
+                el: '#app',
+                data: {
+                    lang: '{{ app()->getLocale() }}',
+                    loading: false,
+                    translate: {
+                        option: '@lang('user.pageRegister.input.all')',
+                        city: '@lang('page.storeCityTitle')',
+                        store: '@lang('page.storeAdressTitle')',
+                        view: '@lang('page.button.viewSite')',
+                        labelAt: '@lang('user.pageRegister.label.all')'
+                    }
+                    
                 },
-                1040:{
-                    items:2
+                computed: {
+                    getLang: function(){
+                        return this.lang;
+                    },
+                    getTranslation: function(){
+                        return this.translate
+                    },
                 },
-                1240:{
-                    items:3
-                }
-            }
-        })
+               
+            })
+
+        var scene = document.getElementById('slider__over');
+        var parallaxInstance = new Parallax(scene, {
+            relativeInput: true
+        });
         $('.top__slider .owl-carousel').owlCarousel({
             items:1,
             autoplay:true,
@@ -268,39 +263,10 @@
             }
         })
 
-        // var target = document.getElementById('slider__over');
-        // target.addEventListener('mousemove', parallax);
-        // target.addEventListener('mouseleave', resetParallax);
-        
-        // function parallax(e){
-        //     this.querySelectorAll('.text__layer').forEach( layer => {
-        //         const speed = layer.getAttribute('data-speed');
-
-        //         const x = (target.clientWidth - e.pageX*speed)/100;
-        //         const y = (target.clientHeight - e.pageY*speed)/100;
-        //         console.log(e.pageX);
-        //         layer.style.transform = 'translateX(' + x + 'px) translateY('+y+'px)';
-        //         layer.style.textShadow = x +'px '+y+'px 3px rgb(0 0 0 / 46%)';
-              
-
-        //     })
-        // }
-        // function resetParallax(){
-        //     this.querySelectorAll('.text__layer').forEach( layer => {
-               
-        //         layer.style.transform = 'translateX(0) translateY(0)';
-        //         layer.style.textShadow = '0px 0px 0px rgb(0 0 0 / 0%)';
-
-        //     })
-        // }
-
-        var scene = document.getElementById('slider__over');
-        var parallaxInstance = new Parallax(scene, {
-        relativeInput: true
-        });
-        
+    
         $('.nav-lang-mobile').on('click', function(){
             $(this).toggleClass('active');
         })
+        
     </script>
 @endpush

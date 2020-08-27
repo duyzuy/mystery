@@ -39,7 +39,10 @@
               <div class="col-12">
                 @foreach($questionnaires as $key => $questionnaire)
                 <div class="card">
-                  <div class="card-header">{{ $questionnaire->translate('en')->title }}</div>
+                  <div class="card-header">{{ $questionnaire->translate('en')->title }}
+                    <a href="{{ route('manage.questionnaire.report.filter', [$questionnaire->id, 'no']) }}" class="btn btn-primary float-right btn-small">Top say no</a>
+                    
+                  </div>
                   <div class="card-body">
                       <ul class="list-group">
                         @foreach($questionnaire->questions as $key => $question)
@@ -47,11 +50,17 @@
                             <p class="bold is-bold"> <span>{{ $key+1 }}. </span>{{ $question->translate('en')->question }}</p>
                            
                               <ul class="list-group">
+                                @foreach($question->responses as $response)
+
+                                  {{ $response->survey->user->name }}
+                                    
+                                @endforeach 
                               @foreach($question->answers as $answer)
                                 <li class="list-group-item answer__group">
                                   <p class="answer" style="margin-bottom: 0">{{ $answer->translate('en')->answer }}</p>
                                   <div class="responses">
                                     <div class="response__count">{{ $answer->responses->count() .'/'. $question->responses->count() }}
+                                      
                                     </div>
                                     <div class="progress progress-xs">
                                       @if($answer->key == 'yes')

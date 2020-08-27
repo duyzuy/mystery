@@ -241,7 +241,9 @@ return [
        
         'UserCheck' => App\Helpers\UserCheck::class,
         'SwitchLanguage' => App\Helpers\SwitchLanguage::class,
+        'TimeFormat' => App\Helpers\TimeFormat::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        
     ],
 
 ];

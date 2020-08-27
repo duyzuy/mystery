@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::get('cityList', 'Api\CityController@cityList')->name('api.city.list');
+Route::get('brandList', 'Api\CityController@brandList')->name('api.brand.list');
+Route::get('restaurentList', 'Api\CityController@restaurentList')->name('api.restaurent.list');

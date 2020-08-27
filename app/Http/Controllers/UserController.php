@@ -11,13 +11,15 @@ use App\Questionnaire;
 use App\SurveyResponse;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Components\FlashMessages;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Requests\StoreSurveyResponse;
 
 class UserController extends Controller
 {
     //
+    use FlashMessages;
 
     public function _construct() {
 
@@ -74,29 +76,25 @@ class UserController extends Controller
         }
     }
 
-    public function store(Request $request, $lang, $questionnaire, $slug){
+    public function store(StoreSurveyResponse $request, $lang, $questionnaire, $slug){
         
-        $request->validate([
-            'responses.*.answer_id'         =>  'required',
-            'responses.*.question_id'       =>  'required',
-            'responses.*.group_id'          =>  'required',
-            'restaurent'                    =>  'required',
-            'address'                       =>  'required',
-            'time'                          =>  'required',
-            'manage_name'                   =>  'required',
-            'staff_name'                    =>  'required',
-        ]); 
+        // StoreSurveyResponse
+          
+        $request->validated();  
+      
+        
+
         // $published = Carbon::now();
         // $post->published_at = $published->format('Y-m-d H:i:s');
-  
+    
         $responses = $request->responses;
-        
+      
         $total = 0;
         foreach($responses as $key => $response){
             $answer = Answer::where([
-                                    ['id', $response['answer_id']], 
-                                    ['question_id', $response['question_id']]
-                                    ])->firstOrFail();
+                        ['id', $response['answer_id']], 
+                        ['question_id', $response['question_id']]
+                    ])->firstOrFail();
             $responses[$key]['point'] = $answer->point;
             $responses[$key]['key'] = $answer->key;
 
@@ -108,17 +106,21 @@ class UserController extends Controller
         $survey->user_id            = Auth::user()->id;
         $survey->questionnaire_id   = $questionnaire;
         $survey->store_id           = $request->restaurent;
-        $survey->dinner_time        = $request->time;
+        $survey->dinner_time        = $request->restaurent_time;
         $survey->total_point        = $total;
-        $survey->address	        = $request->address;
         $survey->staff_name         = $request->staff_name;
         $survey->manager_name       = $request->manage_name;
+        $survey->bank_name          = $request->bank_name;
+        $survey->bank_number        = $request->card_number;
+        $survey->bank_address       = $request->bank_address;
+        $survey->viewed             = 0;
+        $survey->receipt_number     = $request->receipt;
         $survey->feedback           = $request->user_feedback;
         
         $survey->save();
 
         $survey->responses()->createMany($responses);
-        $request->session()->flash('success', 'Answer success');
+        self::success('Thank you for your response');
         return redirect()->route('user.profile', app()->getLocale());
 
     }

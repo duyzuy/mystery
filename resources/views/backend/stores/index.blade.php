@@ -1,5 +1,9 @@
 @extends('layouts.app')
+@push('styles')
 
+<link href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+<link href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}" rel="stylesheet">
+@endpush
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -7,18 +11,18 @@
       <div class="container-fluid">
         <div class="row mb-5">
           <div class="col-sm-6">
-            <h1>Stores</h1>
+            <h1>Restaurents</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Stores</li>
+              <li class="breadcrumb-item active">Restaurents</li>
             </ol>
           </div>
         </div>
         <div class="row mb-2">
             <div class="col-sm-12">
-                <a class="btn btn-primary" href="{{ route('stores.create') }}">Add new Store</a>
+                <a class="btn btn-primary" href="{{ route('stores.create') }}">Add new Restaurent</a>
             </div>
         
           </div>
@@ -30,49 +34,41 @@
 
       <!-- Default box -->
       <div class="card">
- 
-        <div class="card-body p-0">
-          <table class="table table-striped projects">
+        <div class="card-header">
+          <h3 class="card-title">Restaurent list</h3>
+        </div>
+        <div class="card-body">
+          <table id="dataTable" class="table table-bordered table-striped">
               <thead>
                     <tr>
-                        <th style="width: 5%">
-                            #
-                        </th>
-                        <th style="width: 30%">
-                            Store name
-                        </th>
-                        <th style="width: 20%">City</th>
-                    
-                        <th style="width: 25%">
-                            <span style="margin-right: 10px;">EN</span>
-                            <span>VI</span>
-                        </th>
+                        <th style="width: 5%">#</th>
+                        <th style="width: 30%">Restaurent name</th>
+                        <th style="width: 10%">Region</th>
+                        <th style="width: 15%">City</th>
+                        <th style="width: 20%">brand</th>
+                        
                         <th style="width: 20%">Actions</th>
                     </tr>
               </thead>
               <tbody>
-                  @php 
-                    $i = 1;
-                  @endphp
-                  @foreach($stores as $store)
+             
+                  @foreach($stores as $key => $store)
                     <tr>
-                        <td>{{ $i }}</td>
+                        <td>{{ $key+1 }}</td>
                         <td>{{ $store->translate('en')->store_name }}</td>
+                        <td>{{ $store->city->region->translate('en')->name }}</td>
                         <td>{{ $store->city->translate('en')->name }}</td>
-                        <td><i class="fas fa-check" style="margin-right: 10px; color: #4CAF50"></i>
-                            <i class="fas fa-check" style="color: #4CAF50"></i></td>
+                        <td>{{ $store->brand->name }}</td>
                         <td>
                             <a class="btn btn-info btn-sm" href="{{ route('stores.edit', $store->id) }}"><i class="fas fa-pencil-alt"></i> Edit</a>
-                            <a class="btn btn-danger btn-sm" href="#" onclick="deleteCity({{ $store->id }})"><i class="fas fa-trash"></i> Delete</a>
+                            <a class="btn btn-danger btn-sm" href="#" onclick="deleteStore({{ $store->id }})"><i class="fas fa-trash"></i> Delete</a>
                             <form id="store-{{ $store->id }}" action="{{ route('stores.destroy', $store->id )}}" method="POST" style="display: none;">
                                 @csrf
                                 @method('DELETE')
                             </form>
                     </td>
                     </tr>
-                    @php 
-                        $i++;
-                    @endphp
+             
                   @endforeach
               </tbody>
           </table>
@@ -86,11 +82,25 @@
   </div>
 @endsection
 @push('scripts')
-<script>
-       
- 
 
-    function deleteCity(Id) {
+       
+    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('js/backend/demo.js') }}"></script>
+    <script>
+       
+        $(function () {
+    
+            $('#dataTable').DataTable({
+                "responsive": true,
+            "autoWidth": false,
+            });
+        });
+
+
+    function deleteStore(Id) {
  
         document.getElementById('store-'+Id).submit()
     }

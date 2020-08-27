@@ -44,6 +44,39 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-6">
+                                
+                                <label>City</label>
+                                <select class="form-control @error('city') is-invalid @enderror" name="city">
+                                    <option value="0">Select the city</option>
+                                    @foreach($cities as $city)
+                                        <option {{ $city->id == $store->city_id ? 'selected' : '' }} value="{{ $city->id }}">{{ $city->translate('en')->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('city')
+                                    <span class="error invalid-feedback" role="alert">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label>Brand</label>
+                                    <select class="form-control @error('brand') is-invalid @enderror" name="brand">
+                                        <option value="">Select brand</option>
+                                        @foreach($brands as $brand)
+                                            <option {{ $brand->id == $store->brand_id ? 'selected' : '' }} value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('brand')
+                                        <span class="error invalid-feedback" role="alert">{{ $message }}</span>
+                                    @enderror
+                                    
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Website</label>
                                     <input type="text" class="form-control @error('website') is-invalid @enderror" name="website" placeholder="Ex: http://example.com" value="{{ $store->store_website }}">
@@ -52,48 +85,34 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6">
-                                <div class="form-group">
-                                    <label>City</label>
-                                    <select class="form-control @error('city') is-invalid @enderror" name="city">
-                                        <option value="0">Select the city</option>
-                                        @foreach($cities as $city)
-                                            <option {{ $store->city_id == $city->id ? 'selected' : '' }} value="{{ $city->id }}">{{ $city->translate('en')->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('city')
+                            <div class="col-md-6">
+                                <div class="form-group @error('store_image') is-invalid @enderror">
+                                    <label for="store_image">Store image</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="hidden" id="store_old_image" name="store_old_image" value="{{ $store->store_image }}">
+                                            <input type="file" class="custom-file-input" id="store_image" name="store_image">
+                                            <label class="custom-file-label" for="store_image">Change image</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Upload</span>
+                                        </div>
+                                    </div>
+                                    @error('store_image')
                                         <span class="error invalid-feedback" role="alert">{{ $message }}</span>
                                     @enderror
-                                  </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                           
-                        </div>
-                        <div class="form-group @error('store_image') is-invalid @enderror">
-                            <label for="store_image">Store image</label>
-                            <div class="image-preview mb-2">
-                                @if($store->store_image == 'default.jpg')
-                                <img src="{{ asset('images') . '/' . $store->store_image }}" alt="store image" width="200"/>
-                                @else
-                                <img src="{{ asset('storage/stores') . '/' . $store->store_image }}" alt="store image" width="200"/>
-
-                                @endif
-                            </div>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="hidden" id="store_old_image" name="store_old_image" value="{{ $store->store_image }}">
-                                    <input type="file" class="custom-file-input" id="store_image" name="store_image">
-                                    <label class="custom-file-label" for="store_image">Change image</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text">Upload</span>
+                                    <div class="image-preview mt-2">
+                                        @if($store->store_image == 'default.jpg')
+                                        <img src="{{ asset('images') . '/' . $store->store_image }}" alt="store image" width="200"/>
+                                        @else
+                                        <img src="{{ asset('storage/stores') . '/' . $store->store_image }}" alt="store image" width="200"/>
+        
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
-                            @error('store_image')
-                                <span class="error invalid-feedback" role="alert">{{ $message }}</span>
-                            @enderror
                         </div>
+                      
                        
                       
                         <hr/>

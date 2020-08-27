@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Survey extends Model
@@ -30,4 +31,11 @@ class Survey extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function questions(){
+        return $this->belongsToMany(Question::class, 'survey_responses', 'survey_id', 'question_id');
+    }
+
+    public function store(){
+        return $this->belongsTo(Store::class);
+    }
 }

@@ -15,7 +15,7 @@ class Store extends Model
     //
 
     protected $fillable = [
-        'store_website', 'store_image', 'city_id'
+        'store_website', 'store_image', 'city_id', 'brand_id', 'lat', 'lang'
     ];
 
     public $translatedAttributes = ['store_name', 'store_address', 'store_description'];
@@ -31,5 +31,9 @@ class Store extends Model
 
     public function users(){
         return $this->hasMany('App\User');
+    }
+
+    public function brand(){
+        return $this->belongsTo(Brand::class);
     }
 }

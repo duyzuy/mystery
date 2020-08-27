@@ -49,5 +49,9 @@ class Question extends Model
     //     return $this->hasOne('survey_responses')->selectRaw('question_id, sum(responses) as aggregate')->groupBy('question_id');
     // }
 
+    public function surveys(){
+        return $this->belongsToMany(Survey::class, 'survey_responses', 'question_id', 'survey_id');
+    }
+
 
 }

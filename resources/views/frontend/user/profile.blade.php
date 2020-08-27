@@ -30,43 +30,16 @@
                                
                             </li>
                             <li>
-                                <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
-                                <span class="has-text-weight-bold">@lang('user.profile.address'):</span> 
-                                <span class="is-float-right ">{{ Auth::user()->address }}</span>
-                            </li>
-                            <li>
-                                <span class="icon"><i class="fas fa-utensils"></i></span>
-                                <span class="has-text-weight-bold">@lang('user.profile.restaurent'):</span> 
-                                <span class="is-float-right ">{{ Auth::user()->store->translate()->store_name }}</span>
-                            </li>
-                            <li>
                                 <span class="icon"><i class="fas fa-phone"></i></span>
                                 <span class="has-text-weight-bold">@lang('user.profile.phone'):</span>  
                                 <span class="is-float-right ">{{ Auth::user()->phone_number }}</span>
                             </li>
-                        </ul>
-                    </div>
-                    <hr class="is-divider">
-                    <h3 class="title is-size-5">@lang('user.pageRegister.label.bankInfo')</h3>
-                    <div class="box-content">
-                        <ul>
                             <li>
-                                <span class="icon"><i class="fas fa-university"></i></span>
-                                <span class="has-text-weight-bold">@lang('user.pageRegister.label.bankName'):</span>  
-                                <span class="is-float-right ">{{ Auth::user()->bank_name }}</span>
+                                <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
+                                <span class="has-text-weight-bold">@lang('user.profile.address'):</span> 
+                                <span class="is-float-right ">{{ Auth::user()->address }}</span>
                             </li>
-                            <li>
-                                <span class="icon"><i class="fas fa-money-check"></i></span> 
-                                <span class="has-text-weight-bold">@lang('user.pageRegister.label.bankCard'):</span> 
-                                <span class="is-float-right">{{ Auth::user()->bank_number }}</span>
-                            </li>
-                            <li>
-                                <span class="icon"><i class="fas fa-map-marker"></i></span> 
-                                <span class="has-text-weight-bold">@lang('user.pageRegister.label.bankAddress'):</span> 
-                                <span class="is-float-right ">{{ Auth::user()->bank_address }}</span>
-                           
-                            </li>
-                          
+                            
                         </ul>
                     </div>
                     <hr class="is-divider">
@@ -82,9 +55,11 @@
                             <li class="questionnaire__item">
                                 <p class="questionnaire__title">{{ $questionnaire->translate()->title }}</p>
                                 @if($user->is_Responsed())
-                                    <span class="title is-size-5 has-text-danger">{{ $user->get_Response()->total_point }} @lang('user.survey.point')</span>
+                                    {{-- <span class="title is-size-5 has-text-danger">{{ $user->get_Response()->total_point }} @lang('user.survey.point')</span> --}}
+                                    <span class="icon is-large has-text-success"><i class="fas fa-check"></i></span>
                                 @else
                                 <a class="button is-small is-success" href="{{ route('user.survey.detail', [app()->getLocale(), $questionnaire->id, Str::slug($questionnaire->translate()->title)]) }}">@lang('user.button.takesurvey')</a>
+                                   
                                 @endif
                                
                             </li>

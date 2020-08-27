@@ -21,15 +21,7 @@ class CreateImageTable extends Migration
             $table->string('imageable_type');
             $table->timestamps();
         });
-        // Schema::create('image_translation', function (Blueprint $table) {
-        //     $table->bigInteger('image_id')->unsigned();
-        //     $table->string('locale')->index();
-        //     $table->json('url');
-        //     $table->string('name')->nullable();
-        //     $table->unique(['image_id','locale']);
-        //     $table->foreign('image_id')->references('id')->on('image')->onDelete('cascade');
-        //     $table->timestamps();
-        // });
+
     }
 
     /**

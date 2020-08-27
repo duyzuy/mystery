@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use App\City;
 use App\Store;
+use App\Brand;
 use App\Components\FlashMessages;
 class StoreController extends Controller
 {
@@ -36,8 +37,8 @@ class StoreController extends Controller
     {
         //
         $cities = City::all();
-
-        return view('backend.stores.create', compact(['cities']));
+        $brands = Brand::all();
+        return view('backend.stores.create', compact(['cities', 'brands']));
     }
 
     /**
@@ -48,7 +49,8 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-  
+        
+     
     
         //
         $request->validate([
@@ -58,6 +60,7 @@ class StoreController extends Controller
             'vi_store_address'  =>  'required',
             'en_store_name'     =>  'required',
             'en_store_address'  =>  'required',
+            'brand'             =>  'required',
             'store_image'       =>  'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         
@@ -84,6 +87,7 @@ class StoreController extends Controller
             'store_website'     =>  $request->website,
             'city_id'           =>  $request->city,
             'store_image'       =>  $fileName,
+            'brand_id'          =>  $request->brand,
             'vi' => [
                 'store_name'            => $request->vi_store_name, 
                 'store_address'         => $request->vi_store_address, 
@@ -124,8 +128,8 @@ class StoreController extends Controller
         //
         $store = Store::where('id', $id)->firstOrFail();
         $cities = City::all();
-        
-        return view('backend.stores.edit', compact(['store', 'cities']));
+        $brands = Brand::all();
+        return view('backend.stores.edit', compact(['store', 'cities', 'brands']));
     }
 
     /**
@@ -138,7 +142,7 @@ class StoreController extends Controller
     public function update(Request $request, $id)
     {
         //
- 
+        
         $request->validate([
             'website'           =>  'required',
             'city'              =>  'required',
@@ -146,6 +150,7 @@ class StoreController extends Controller
             'vi_store_address'  =>  'required',
             'en_store_name'     =>  'required',
             'en_store_address'  =>  'required',
+            'brand'             =>  'required',
             'store_image'       =>  'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -153,6 +158,7 @@ class StoreController extends Controller
         $store_data = [
             'store_website'     =>  $request->website,
             'city_id'           =>  $request->city,
+            'brand_id'          =>  $request->brand,
             'vi' => [
                 'store_name'            => $request->input('vi_store_name'), 
                 'store_address'         => $request->input('vi_store_address'), 

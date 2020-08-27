@@ -14,7 +14,7 @@ class SurveyResponse extends Model
     //
 
     protected $fillable = [
-        
+        'survey_id', 'descriptions', 'answer_id', 'question_id', 'group_id', 'point', 'key'
     ];
 
 
@@ -27,5 +27,16 @@ class SurveyResponse extends Model
 
     //     return $this->belongsTo(Answer::class);
     // }
+
+    public function users(){
+        return $this->hasMany(User::class);
+    }
+
+    public function question(){
+        return $this->belongsTo(Question::class);
+    }
+    public function answer(){
+        return $this->belongsTo(Answer::class);
+    }
     
 }

@@ -56,7 +56,7 @@ class AppServiceProvider extends ServiceProvider
   
 
         view::composer(
-            ['backend.dashboard'], DashboardComposer::class
+            ['*'], DashboardComposer::class
             
         );
 

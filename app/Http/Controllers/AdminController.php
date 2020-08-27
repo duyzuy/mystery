@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Test;
 use App\User;
+use App\Question;
 use App\Questionnaire;
 use App\Exports\UsersExport;
+
 use Illuminate\Http\Request;
 use App\Components\FlashMessages;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\MailController;
 
-use App\Test;
+use App\Survey;
 
 class AdminController extends Controller
 {
@@ -44,6 +48,7 @@ class AdminController extends Controller
 
     public function show($id){
         $user = User::where('id', $id)->firstOrFail();
+        
         return view('backend.users.show', compact(['user']));
     } 
 
@@ -70,7 +75,7 @@ class AdminController extends Controller
                 $user->actived = 1;
                 $user->password = Hash::make($password);
                 $user->save();
-                $link_survey = 'http://localhost/mystery/manage/users';
+                $link_survey = 'http://afg.huho.com.vn/vi/survey';
 
                 MailController::sendVerifyedEmail($user->name, $user->email, $password, $link_survey, $user->token );
 
@@ -110,23 +115,8 @@ class AdminController extends Controller
 
         $questionnaires->load('questions.answers.responses');
 
-        // $questionnaires->load(['questions' => function ($q) {
-        //     $q->rightJoin('survey_responses', 'survey_responses.question_id', '=', 'questions.id')
-        //             ->where('survey_responses.key', '=', 'no')
-        //             // ->selectRaw('questions.*, SUM(survey_responses.question_id) as resSum')
-        //             // ->groupBy('questions.id')
-        //             ->orderBy('question_id', 'desc')->get();
-        // }]);
 
 
-
-        // $category->load(['posts' => function ($q) {
-        //     $q->leftJoin('votes', 'votes.post_id', '=', 'posts.id')
-        //         ->selectRaw('posts.*, sum(votes.votes) as votesSum')
-        //         ->groupBy('posts.id')
-        //         ->orderBy('votesSum', 'desc');
-        //  }]);
-         
         
         return view('backend.questionnaires.report', compact(['questionnaires']));
     }
@@ -143,10 +133,55 @@ class AdminController extends Controller
         
     }
 
-    public function indexTest(){
-        return view('backend.test.index');
+   public function questionsFilter(Questionnaire $questionnaire, $filter){
+
+        
+        $questions = Question::where('questionnaire_id', $questionnaire->id)
+            ->join('survey_responses', function($join){
+                $join->on('questions.id', '=', 'survey_responses.question_id')
+                    ->where('survey_responses.key', '=' , 'no');          
+            })
+            ->selectRaw('questions.*, COUNT(survey_responses.question_id) as resSum, survey_responses.key')
+            ->groupBy('questions.id')
+            ->orderBy('resSum', 'desc')->get();
+            
+            // $questions->load(['surveys' => function($q){
+
+            //     $q->rightJoin('survey_responses', '')
+            // }]);
+
+            // $questionnaires = Questionnaire::all();
+            // $questions = Question::where('questionnaire_id', $questionnaire->id)
+            
+            // $questionnaire->load(['questions' => function ($q) {
+            //     $q->rightJoin('survey_responses', 'survey_responses.question_id', '=', 'questions.id')
+            //             ->where('survey_responses.key', '=', 'yes')
+            //              ->selectRaw('questions.*, COUNT(survey_responses.question_id) as resSum')
+            //              ->groupBy('questions.id')
+            //             ->orderBy('resSum', 'desc')->get();
+            // }]);
+
+
+
+
+            // dd($questions->all());
+           
+            return view('backend.questionnaires.reportFilter', compact(['questions', 'questionnaire']));
     }
 
+    public function responses(){
+       $surveys = Survey::all();
+
+       return view('backend.questionnaires.surveys.index', compact(['surveys']));
+    }
+
+    public function responsesDetail($id){
+        $survey = Survey::where('id', $id)->firstOrFail();
+        $survey->viewed = 1;
+        $survey->update();
+        $survey->load('responses');
+        return view('backend.questionnaires.surveys.detail', compact(['survey']));
+    }
 
 
 

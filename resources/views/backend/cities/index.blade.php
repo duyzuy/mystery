@@ -40,22 +40,48 @@
               <form method="POST" action="{{ route('manage.city.store') }}">
                 @csrf
                 <div class="card-body">
-                  <div class="form-group">
-                    <label for="viCityName">City name (Vietnamese)</label>
-                    <input type="text" name="vi_city_name" class="form-control @error('vi_city_name') is-invalid @enderror" value="{{ old('vi_city_name') }}" id="viCityName" placeholder="City name (vietnamese)">
-                    
-                    @error('vi_city_name')
-                        <span class="error invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="region">Region</label>
+                        <select class="form-control @error('region') is-invalid @enderror" name="region" style="width: 100%;">
+                          <option value="">Select region</option>
+                          @foreach($regions as $region)
+                            <option {{ old('region') == $region->id ? 'selected' : '' }} value="{{ $region->id }}">{{ $region->translate('en')->name }}</option>
+                          @endforeach
+                        </select>
+                        @error('region')
+                          <span class="error invalid-feedback" role="alert">{{ $message }}</span>
+                        @enderror
+                      </div>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="enCityName">City name (English)</label>
-                    <input type="text" name="en_city_name" class="form-control @error('en_city_name') is-invalid @enderror" value="{{ old('en_city_name') }}" id="enCityName" placeholder="City name (English)">
-                    @error('en_city_name')
-                        <span class="error invalid-feedback" role="alert">{{ $message }}</span>
-                    @enderror
+                  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="viCityName">City name (Vietnamese)</label>
+                        <input type="text" name="vi_city_name" class="form-control @error('vi_city_name') is-invalid @enderror" value="{{ old('vi_city_name') }}" id="viCityName" placeholder="City name (vietnamese)">
+                        
+                        @error('vi_city_name')
+                            <span class="error invalid-feedback" role="alert">{{ $message }}</span>
+                        @enderror
+                      </div>
+                    </div>
+                    <!--endcol-->
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="enCityName">City name (English)</label>
+                        <input type="text" name="en_city_name" class="form-control @error('en_city_name') is-invalid @enderror" value="{{ old('en_city_name') }}" id="enCityName" placeholder="City name (English)">
+                        @error('en_city_name')
+                            <span class="error invalid-feedback" role="alert">{{ $message }}</span>
+                        @enderror
+                      </div>
+                    </div>
                   </div>
-
+                  <!--endrow-->
+                 
+            
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -83,19 +109,18 @@
                       <th>ID</th>
                       <th>City Name (VI)</th>
                       <th>City Name (EN)</th>
-                      
+                      <th>Region</th>
                       <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                        @php 
-                            $count = 1;
-                        @endphp
-                        @foreach($cities as $city)
+                      
+                        @foreach($cities as $key => $city)
                         <tr>
-                            <td>{{ $count }}</td>
+                            <td>{{ $key+1 }}</td>
                             <td>{{ $city->translate('vi')->name }}</td>
                             <td>{{ $city->translate('en')->name }}</td>
+                            <td>{{ $city->region->translate('en')->name }}</td>
                            
                             <td><a href="{{ route('manage.city.edit', $city->id) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i> Edit</a>
                                 <a class="btn btn-danger btn-sm" href="#" onclick="deleteCity({{ $city->id }})"><i class="fas fa-trash"></i> Delete</a>
@@ -103,14 +128,8 @@
                                     @csrf
                                     @method('DELETE')
                                 </form>
-                            
                         </td>
-                         
                           </tr>
-
-                          @php 
-                            $count++;
-                        @endphp
                         @endforeach
                     </tbody>
                     <tfoot>
@@ -118,7 +137,7 @@
                         <th>ID</th>
                         <th>City Name (VI)</th>
                         <th>City Name (EN)</th>
-                        
+                        <th>Region</th>   
                         <th>Action</th>
                     </tr>
                     </tfoot>
@@ -157,6 +176,9 @@
      
             document.getElementById('city-'+cityId).submit()
         }
+ 
+ 
+
 
 
     </script>

@@ -50,4 +50,10 @@ class User extends Authenticatable
         return $this->hasMany(Survey::class);
     }
 
+    public function city(){
+        return $this->belongsTo('App\City');
+    }
+    public function brand(){
+        return $this->belongsTo('App\Brand');
+    }
 }

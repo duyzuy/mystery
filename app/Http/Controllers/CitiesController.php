@@ -4,28 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\City;
-
+use App\Region;
+use App\Components\FlashMessages;
 class CitiesController extends Controller
 {
     //
+    use FlashMessages;
 
     public function index(){
 
         $cities = City::all();
-     
-        return view('backend.cities.index', compact(['cities']));
+        $regions = Region::all();
+        return view('backend.cities.index', compact(['cities', 'regions']));
     }
 
     public function store(Request $request){
         
         //validation
-
+      
         $request->validate([
             'vi_city_name'  =>  'required',
             'en_city_name'  =>  'required',
+            'region'        =>  'required',
         ]);
 
         $city_data = [
+            'region_id'     =>  $request->region,
             'en' => [
                 'name'       => $request->input('en_city_name'), 
             ],
@@ -38,14 +42,15 @@ class CitiesController extends Controller
          City::create($city_data);
      
          // Redirect to the previous page successfully    
-         $request->session()->flash('success', 'Created success');
+         self::success('Add City success');
          return redirect()->route('manage.cities');
 
     }
     
     public function edit($id){
         $city = City::findOrFail($id);
-        return view('backend.cities.edit', compact(['city']));
+        $regions = Region::all();
+        return view('backend.cities.edit', compact(['city', 'regions']));
     }
 
     public function update($id, Request $request) {
@@ -53,9 +58,11 @@ class CitiesController extends Controller
         $this->validate($request, [
             'vi_city_name'  =>  'required',
             'en_city_name'  =>  'required',
+            'region'        =>  'required',
         ]);
 
         $city_data = [
+            'region_id'     =>  $request->region,
             'en' => [
                 'name'       => $request->input('en_city_name'), 
             ],
@@ -70,7 +77,7 @@ class CitiesController extends Controller
     
         // Redirect to the previous page successfully    
 
-        $request->session()->flash('success', 'Updated success');
+        self::success('Update success');
 
         return redirect()->route('manage.cities');
     }
@@ -83,7 +90,7 @@ class CitiesController extends Controller
         $city = City::where('id', $id)->firstOrFail();
         $city->cityTranslation()->delete();
         $city->delete();
-        $request->session()->flash('success', 'Delete comment success');
+        self::success('Add City success');
         return redirect()->back();
     }
 }

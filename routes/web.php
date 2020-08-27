@@ -59,8 +59,10 @@ Route::prefix('manage')->group(function() {
         Route::match(['put', 'patch'], 'city/{id}', 'CitiesController@update')->name('manage.city.update');
         Route::delete('cities/{id}', 'CitiesController@destroy')->name('manage.city.delete');
 
+        // Brand
+        Route::resource('brands', 'BrandController', ['except' => ['brands.update', 'brands.index', 'brands.edit', 'brands.store']]);
         //store
-        Route::resource('stores', 'StoreController');
+        Route::resource('stores', 'StoreController', ['except' => ['stores.update', 'stores.index', 'stores.edit', 'stores.store']]);
 
         //user
         Route::get('users', 'AdminController@listAll')->name('manage.user.list');
@@ -81,7 +83,10 @@ Route::prefix('manage')->group(function() {
 
         //Report
         Route::get('report/questionnaires', 'AdminController@questionnaireReport')->name('manage.questionnaire.report');
+        Route::get('report/questionnaires/{questionnaire}/questions&filter={filter}', 'AdminController@questionsFilter')->name('manage.questionnaire.report.filter');
         
+        Route::get('report/responses', 'AdminController@responses')->name('manage.survey.responses');
+        Route::get('report/responses/{id}', 'AdminController@responsesDetail')->name('manage.survey.response.detail');
 
         //export
 

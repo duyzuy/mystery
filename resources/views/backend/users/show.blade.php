@@ -45,24 +45,22 @@
                       </ul>
                       <hr>
 
-                      <h3 class="lead"><b>{{ __('Bank information') }}</b></h3>
+                      <h3 class="lead"><b>{{ __('Restaurent for register') }}</b></h3>
                       <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li  class="mb-2"><span class="fa-li"><i class="fas fa-university"></i></span> Bank name: {{ $user->bank_name }}</li>
-                        <li  class="mb-2"><span class="fa-li"><i class="fas fa-money-check"></i></span> Card number: {{ $user->bank_number }}</li>
+                        <li  class="mb-2"><span class="fa-li"><i class="fas fa-university"></i></span> Region: {{ $user->city->region->translate('en')->name }}</li>
+                        <li  class="mb-2"><span class="fa-li"><i class="fas fa-building"></i></span> City: {{ $user->city->translate('en')->name }}</li>
+                        <li  class="mb-2"><span class="fa-li"><i class="fas fa-leaf"></i></span> Brand: {{ $user->brand->name }}</li>
                         
-                        <li  class="mb-2"><span class="fa-li"><i class="fas fa-map-marker"></i></span> Bank address: {{ $user->bank_address }}</li>
+                        <li  class="mb-2"><span class="fa-li"><i class="fas fa-utensils"></i></span> Restaurent: {{ $user->store->translate('en')->store_name }}</li>
                       </ul>
-                      <hr>
-                      
+                      {{-- <hr>
                       <h3 class="lead"><b>{{ __('Bill information') }}</b></h3>
-                     
                       <ul class="ml-4 mb-3 fa-ul text-muted">
                         <li  class="mb-2"><span class="fa-li"><i class="fas fa-store"></i></span> Store name: {{ $user->store->translate('en')->store_name }}</li>
                         <li  class="mb-2"><span class="fa-li"><i class="fas fa-map-marker"></i></span> Store address: {{ $user->store->translate('en')->store_address }}</li>
                       </ul>
-                      <h3 class="lead"><b>{{ __('Bill images') }}</b></h3>
-
-                            <div class="row">
+                      <h3 class="lead"><b>{{ __('Bill images') }}</b></h3> --}}
+                            {{-- <div class="row">
                                 @if(count($user->images) != 0)
                                     @foreach($user->images as $key => $image)
                                         @php
@@ -78,7 +76,7 @@
                                 @else
                                         <p class="alert">{{ __('No image') }}</p>
                                 @endif
-                            </div>
+                            </div> --}}
                           
                 </div>
                 <div class="card-footer">
@@ -128,15 +126,15 @@
 @push('scripts')
 <script src="{{ asset('plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
 <script>
-    $(function () {
-    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-      event.preventDefault();
-      $(this).ekkoLightbox({
-        alwaysShowClose: true
-      });
-    });
+    // $(function () {
+    //   $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+    //     event.preventDefault();
+    //     $(this).ekkoLightbox({
+    //       alwaysShowClose: true
+    //     });
+    //   });
 
-  })
+    // })
 
 </script>
 @endpush
