@@ -5,7 +5,7 @@
  */
 
 require('./bootstrap');
-
+import Vue from 'vue';
 window.Vue = require('vue');
 
 // import VueI18n from 'vue-i18n';
@@ -25,6 +25,7 @@ window.Vue = require('vue');
 import Buefy from 'buefy';
 
 
+
 Vue.use(Buefy, {
     // defaultIconComponent: 'vue-fontawesome',
     defaultIconPack: 'fas',
@@ -32,11 +33,12 @@ Vue.use(Buefy, {
 require('./frontend/header');
 
 
+
+
 Vue.config.productionTip = false;
 
 
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-// Vue.component('answer', require('./components/AnswerComponent.vue').default);
-Vue.component('restaurent', require('./components/RestaurentComponent.vue').default);
+
+Vue.component('restaurants', require('./components/RestaurentComponent.vue').default);
 Vue.component('b-receipt', require('./components/ReceiptInputComponent.vue').default);

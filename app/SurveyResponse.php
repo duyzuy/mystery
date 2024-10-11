@@ -38,5 +38,8 @@ class SurveyResponse extends Model
     public function answer(){
         return $this->belongsTo(Answer::class);
     }
+    public function group(){
+        return $this->belongsTo(QuestionGroup::class, 'group_id', 'id');
+     }
     
 }

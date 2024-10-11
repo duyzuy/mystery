@@ -13,11 +13,10 @@
 
         <div class="jserror" v-if="help">
             
-            <ul>
-                <li :class="{ valid: valids.region }" >The first string should be in <strong>N</strong>, <strong>S</strong>, <strong>C</strong><span v-show="valids.region" class="icon"><i class="far fa-check-circle"></i></span></li>
-                <li :class="{ valid: valids.brand }">The second string should be in <strong>A</strong>, <strong>J</strong>, <strong>P</strong><span v-show="valids.brand" class="icon"><i class="far fa-check-circle"></i></span></li>
-                <li :class="{ valid: valids.store }">The Third string should be in <strong>HBT</strong>, <strong>PXL</strong>, <strong>VHM</strong><span v-show="valids.store" class="icon"><i class="far fa-check-circle"></i></span></li>
-            </ul>
+            <div class="wrap_list_code">
+                <p :class="{valid: valid}"><strong>The receipt must include one of code bellow</strong> <span v-show="valid" class="icon"><i class="far fa-check-circle"></i></span></p>
+                <span v-for="(code, index) in restaurantCodeList" :key="index" class="code">{{code.code}}</span>
+            </div>
         </div>
    </div>
 </template>
@@ -35,18 +34,21 @@
             },
             oldreceipt:{
                 type: String,
+            },
+            restaurantcode: {
+                type: String,
+                required: true
             }
         },
         data () {
             return{
                 receipt: this.oldreceipt,
-                receiptValid: '',
-                valids: [],
-                errors: [],
+                receiptValid: '', 
                 help: false, 
-                region: '',
-                brand: '',
-                store: '',
+                loading: false,
+                restaurantCodeList: [],
+                valid: false,
+                restaurantRegister: this.restaurantcode
             }
         },
         methods: {
@@ -54,148 +56,75 @@
                 this.help = true;
                 event.target.focus();
             },
-            isRegion: function(value){
-                const regionValid = ['N', 'S', 'C']
-                if(regionValid.includes(value)){
-                    return true;
-                }
-             return false;
-            },
-            isBrand: function(value){
-                const brandValid = ['A', 'J', 'P'];
-                if(brandValid.includes(value)){
-                    return true
-                }
-                return false;
-            },
-            isStore: function(value){
-                const storeValid = ['HBT', 'PXL', 'VHM']
-                if(storeValid.includes(value)){
-                    return true
-                }
-                return false;
-            },
-            replaceCharacters: function(value){
-                const regExpr = /[^a-zA-Z0-9]/g;
-                return value.replace(regExpr, '');
-            },
-            replaceSpace: function(value){
-                  return value.replace(/ /g, '');
-            },
-            setReceipt: function(value){
+            getRestaurantCode: function(){
                 const vm = this;
-                if(value.length > 0 ){
-                    value = value.toUpperCase();
+            
+                axios.get('https://guestsurvey.afg.vn/api/restaurantCode').then(function(response){   
+                
+                    vm.loading = true;
+                    vm.restaurantCodeList = response.data;
 
-                    const region = value.substr(0, 1);
-                    const brand = value.substr(1,1);
-                    const store = value.substr(2,3);
-                    const remain = value.substr(5);
-                    
-                    this.receiptValid = region + '.' + brand + '.' + store + remain;
-                    vm.$emit('receipt-value', vm.receiptValid);
-                }else{
-                     this.receiptValid = '';
-                }
-              
-               
+                }).catch(function(error){
+                    console.log(error)
+                });
             }
+        },
+        mounted () {   
+            this.getRestaurantCode();
         },
         watch: {
             receipt: function(){
-              
-                this.receipt = this.receipt.toUpperCase();
-                this.receipt = this.replaceCharacters(this.receipt);
-                this.receipt = this.replaceSpace(this.receipt);
-
-                if(this.receipt.length == 1){
-
-                    const region = this.receipt.substr(0, 1);
-                    
                 
-                    if(this.isRegion(region)){
-
-                        this.valids['region'] = true;
-                        this.region = region;
-
-                    } else {
-                           
-                        this.valids['region'] = false;
-                        this.region = '';
-                           
-                    } 
-                }else if(this.receipt.length == 0){
-
-                    this.valids['region'] = false;
-                    this.region = '';
-           
+                
+                const vm = this;
+                const codeRegister = this.restaurantRegister;
+                if(this.receipt.length == 0){
+                    return;
                 }
+               
 
-                if(this.receipt.length == 2){
+                this.receipt = this.receipt.toUpperCase().trim();
+                const lng = codeRegister.length;
+            
+                if(this.receipt.length < lng){
 
-                        const brand = this.receipt.substr(1,1);
-                        
-                       
-                        if(this.isBrand(brand)){
-                            
-                            this.valids['brand'] = true;
-                            this.brand = brand;
-
-                        } else {
-
-                            this.valids['brand'] = false;
-                            this.brand = '';
-                        }
-                       
-                }else if(this.receipt.length < 2){
-                      
-                        this.valids['brand'] = false;
-                        this.brand = '';
-                  
+                    vm.valid = false;
+        
                 }
-                    
-                if(2 < this.receipt.length && this.receipt.length <= 5){
-
-                    const store = this.receipt.substr(2,3);
-                 
-
-                    if(this.isStore(store)){
-                            
-                        this.valids['store'] = true;
-                        this.store = store;
-
-                    } else {
-
-                        this.valids['store'] = false;
-                            this.store = '';
+                if(this.receipt.length >= lng){
+                     
+                    const codeCheck = this.receipt.substring(0, lng);
+ 
+                    if(codeCheck == codeRegister){
+                        vm.valid = true;
                     }
-                        
-                }else if(this.receipt.length < 5){
 
-                    this.valids['store'] = false;
-                       this.store = '';
 
                 }
                 
                 this.$emit('receipt-value', this.receipt);
-                
 
             }
-        },
+        }
     }
 </script>
 <style lang="scss">
 .jserror{
-    li{
-        position: relative;
-        padding-right: 30px;
-        min-height: 20px;
-        &.valid{
-            color: #38c172;
-                strong{
-                color: #38c172
+    .wrap_list_code{
+        p{
+            position: relative;
+            padding-right: 30px;
+            min-height: 20px;
+            margin-bottom: 10px;
+
+            &.valid{
+                color: #38c172;
+                span.icon, strong{
+                    color: #38c172;
+                }
             }
         }
+    }
         
         
         span.icon{
@@ -204,7 +133,15 @@
             width: 18px;
             height: 18px;
         }
-    }
+        .code{
+            display: inline-block;
+            background: #ececec;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            padding: 0 5px;
+            border-radius: 5px;
+        }
+
     
 }
 </style>

@@ -1,17 +1,5 @@
 <template>
     <div>
-        <div class="field">
-            <div class="control store-select is-size-5">
-                <label for="city" class="is-bold mr-2 mb-0">{{ translate.labelAt }}</label>
-                <div class="select">
-                    <select name="city" id="city" v-model="mCity" @change="getRestaurent()" class="form-control @error('city') is-invalid @enderror">
-                        <option value>{{ theTranslate.option }}</option>
-                        <option v-for="city in theCities" :key="city.id" :value="city.id">{{ city.name }}</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-      
         <carousel 
             :scrollPerPage="true" 
             :perPageCustom="[[350, 1], [550, 2], [1140, 3]]"
@@ -51,8 +39,8 @@
                    
                 </div>
             </slide>
-           
-            </carousel>
+        </carousel>
+   
     </div>
     
 </template>
@@ -62,9 +50,9 @@
 <script>
 import { Carousel, Slide } from 'vue-carousel';
 export default {
-      components: {
-            Carousel,
-            Slide
+    components: {
+            carousel: Carousel,
+            slide: Slide
         },
     props: {
         lang: {
@@ -74,14 +62,18 @@ export default {
         translate: {
             type: Object,
             required: true
+        },
+        cityid:{
+            type: String,
+            required: true,
+            default: "",
         }
     },
     data () {
         return {
-            theCities: [],
             theRestaurents: [],
             theLang: this.lang,
-            mCity: "",
+            cityIdProp: '',
             loading: false,
             theTranslate: this.translate,
             prev: '<span class="icon"><i class="fas fa-chevron-right"></i></span>',
@@ -92,41 +84,35 @@ export default {
     watch: {
         loading: _.debounce(function(){
             this.loading = false;
-        }, 1500)
+        }, 1500),
+        cityid: function(){
+            this.cityIdProp = this.cityid;
+            this.getRestaurent();
+        },
+        
     },
     methods: {
         getRestaurent: function(){
             const vm = this;
             
-            axios.get('http://localhost/mystery/api/restaurentList', {
+            axios.get('./api/restaurentList', {
                 params: {
                     lang: this.theLang,
-                    city: this.mCity,
+                    city: this.cityIdProp, 
                 }
             }).then(function(response){   
                 
                 vm.theRestaurents = response.data;
                 vm.loading = true;
+                
              
             }).catch(function(error){
                 console.log(error)
             });
-        },
-        getCategory: function(){
-            const vm = this;
-            axios.get('http://localhost/mystery/api/cityList', {
-                params: {
-                    lang: this.theLang,
-                }
-            }).then(function(response){
-                vm.theCities = response.data;
-            }).catch(function(error){
-                console.log(error)
-            });
-        },
+        }
     },
     mounted () {   
-        this.getCategory();
+        // this.getCategory();
         this.getRestaurent();
     },
 }
@@ -203,12 +189,12 @@ export default {
         select.form-control{
             border: none;
             padding-left: 0;
-            color: #03d1b2;
+            color: #f15a22;
             font-weight: bold;
             background-color: transparent;
         }
         .select:not(.is-multiple):not(.is-loading)::after{
-            border-color: #03d1b2;
+            border-color: #f15a22 !important;
         }
         .select select:focus{
             box-shadow: none;

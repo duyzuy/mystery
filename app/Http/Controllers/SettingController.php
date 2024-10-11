@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Setting;
+use Carbon\Carbon;
 
 use App\Components\FlashMessages;
 class SettingController extends Controller
@@ -45,8 +46,9 @@ class SettingController extends Controller
             $imageName = pathinfo($imageName, PATHINFO_FILENAME); //remove extension
 
             $imgSlug = Str::slug($imageName, '-'); //create image Slug
-
-            $fileName = $imgSlug . '.' . $extension;
+            $time = Carbon::now();
+            $time = Str::slug($time, '-');
+            $fileName = $imgSlug . $time . '.' . $extension;
 
             Storage::putFileAs('public/slider', $request->file('image'), $fileName); //save in storage directory
             // Image::make($image)->resize(300, 300)->save( storage_path('uploads/store/' . $filename ) );

@@ -1,0 +1,225 @@
+.bootstrap-datetimepicker-widget {
+  width: 100%;
+}
+.bootstrap-datetimepicker-widget .day {
+  cursor: pointer;
+}
+.bootstrap-datetimepicker-widget .day.active {
+  background: #F44336 !important;
+  color: #fff !important;
+}
+.bootstrap-datetimepicker-widget .picker-switch {
+  list-style-type: none;
+}
+
+.datepicker-days .prev,
+.datepicker-days .next {
+  cursor: pointer;
+}
+.datepicker-days td.day {
+  padding: 10px;
+}
+.datepicker-days td.day.disabled {
+  opacity: 0.5;
+  cursor: none;
+}
+
+.datepicker-months span.month {
+  cursor: pointer;
+}
+.datepicker-months span.month.disabled {
+  opacity: 0.5;
+  cursor: none;
+}
+
+.store__registration {
+  padding: 20px;
+  background: #fff;
+}
+.store__registration .not .card {
+  opacity: 0.8;
+}
+
+.bootstrap-duallistbox-container select {
+  min-height: 350px;
+}
+
+.backend-report p {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+.backend-report .questions {
+  width: 550px;
+  overflow: hidden;
+  border: 1px solid #949494;
+  background: #ffe4e6;
+}
+.backend-report .questions .inner_questions div {
+  height: 40px;
+  border-bottom: 1px solid #949494;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+}
+.backend-report .questions .header__question {
+  height: 80px;
+  border-bottom: 1px solid #949494;
+  text-align: center;
+  line-height: 80px;
+}
+.backend-report .questions .question_group_name {
+  background: #f7c1c5;
+}
+
+.reports {
+  border: 1px solid #949494;
+  background: #ffe4e6;
+  border-left-width: 0;
+}
+.reports .inner__report .wrap-brand + .wrap-brand {
+  border-left: 1px solid #949494;
+}
+.reports .inner__report .wrap-store + .wrap-store {
+  border-left: 1px solid #949494;
+}
+.reports .inner__report .wrap-survey + .wrap-survey {
+  border-left: 1px solid #949494;
+}
+
+.brand__header,
+.store__header {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-bottom: 1px solid #949494;
+}
+
+.question__footer {
+  background: #0cda7f;
+}
+.question__footer .sub_row {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #949494;
+}
+.question__footer .sub_row p {
+  text-align: right;
+  width: 100%;
+  padding-right: 20px;
+  font-weight: bold;
+}
+.question__footer .sub_row:last-child {
+  border-bottom-width: 0;
+}
+
+.footer__survey {
+  background: #0cda7f;
+}
+.footer__survey div {
+  height: 40px;
+  width: 100px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #949494;
+}
+.footer__survey div p {
+  padding: 0 10px;
+  text-align: center;
+}
+.footer__survey div:last-child {
+  border-bottom-width: 0px;
+}
+
+.wrap-survey .wrap-answer-yn {
+  display: flex;
+}
+.wrap-survey .answer {
+  width: 100px;
+  height: 40px;
+  border-bottom: 1px solid #949494;
+  text-align: center;
+  line-height: 40px;
+}
+.wrap-survey .answer + .answer {
+  border-left: 1px solid #949494;
+}
+.wrap-survey .space {
+  width: auto;
+  height: 40px;
+  border-bottom: 1px solid #949494;
+  background: #f7c1c5;
+}
+.wrap-survey .choices {
+  display: flex;
+}
+.wrap-survey .choices .answer.disabled {
+  background: #f1f1f1;
+}
+.wrap-survey .choices .question-choice {
+  height: 40px;
+  border-bottom: 1px solid #949494;
+  flex: 1;
+}
+
+.brand__for-month .wrap__q {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.brand__for-month .brand_total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+.brand__for-month .brand_total div {
+  height: 40px;
+  width: 60px;
+  border-bottom: 1px solid #949494;
+  border-left: 1px solid #949494;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.brand__for-month .question-report-yn .q__report {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 40px;
+  border-bottom: 1px solid #949494;
+  border-left: 1px solid #949494;
+}
+.brand__for-month .question-report-choice .choice__left div,
+.brand__for-month .question-report-choice .choice__right div {
+  height: 40px;
+  width: 60px;
+  border-bottom: 1px solid #949494;
+  border-left: 1px solid #949494;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.brand__for-month .question-report-choice .space__choice {
+  height: 40px;
+  width: 100%;
+  border-bottom: 1px solid #949494;
+  border-left: 1px solid #949494;
+}
+.brand__for-month .space {
+  background: #f7c1c5;
+  border-bottom: 1px solid #949494;
+  height: 40px;
+}
+
+.table-report tr.question__group {
+  background: #f7c1c5;
+}
+.table-report tfoot {
+  background: #0cda7f;
+}
+.table-report tbody {
+  background: #fff1f2;
+}

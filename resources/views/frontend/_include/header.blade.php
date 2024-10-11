@@ -1,7 +1,7 @@
-  <nav class="navbar is-transparent">
+  <nav class="navbar is-transparent afg-menu-header">
     <div class="navbar-brand">
       <a class="navbar-item" href="{{ route("home", app()->getLocale()) }}">
-        <img src="{{ asset('img/logo.png') }}" alt="AFG logo" width="112" height="28">
+        <img src="{{ asset('images/mystery-logo.png') }}" alt="AFG logo" class="logo" >
       </a>
 
       <div class="navbar-item has-dropdown is-hoverable nav-lang-mobile">
@@ -20,13 +20,13 @@
     </div>
     <div id="mobileMenu" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="#">
+          <a class="navbar-item" href="#section__store">
             @lang('menu.menuItem.store')
           </a>
-          <a class="navbar-item" href="#">
+          <a class="navbar-item" href="#footer">
             @lang('menu.menuItem.contact')
           </a>
-          <li class="navbar-item">
+          <li class="navbar-item is-hidden">
               @lang('menu.menuItem.support')
             
             <a class="" href="#">
@@ -78,13 +78,13 @@
       </div>
   
       <div class="navbar-end">
-        <a class="navbar-item" href="#">
+        <a class="navbar-item" href="#section__store">
           @lang('menu.menuItem.store')
         </a>
-        <a class="navbar-item" href="#">
+        <a class="navbar-item" href="#footer">
           @lang('menu.menuItem.contact')
         </a>
-        <li class="navbar-item ">
+        <li class="navbar-item is-hidden">
             @lang('menu.menuItem.support')
           <a class="navbar-item" href="#">
             <span class="icon"><i class="fab fa-facebook-f"></i></span>

@@ -16,6 +16,8 @@ class NewUserRegister extends Mailable
      *
      * @return void
      */
+    protected $email_data;
+
     public function __construct($data)
     {
         //
@@ -29,8 +31,22 @@ class NewUserRegister extends Mailable
      */
     public function build()
     {
-        return $this->from(env('MAIL_USERNAME'), 'Mystery')
-                ->subject('Register success')
-                ->view('mails.newuser', ['email_data' => $this->email_data]);
+        $data = $this->email_data;
+        
+        if($data['locale'] == 'en'){
+            return $this->from(env('MAIL_USERNAME'), 'Mystery Diner')
+                    ->subject('Registered successful')
+                    ->view('mails.en.newuser', ['email_data' => $data])
+                    ->attach($data['file'], array(
+                        'mime'  =>  'application/pdf'
+                    ));
+        }else{
+            return $this->from(env('MAIL_USERNAME'), 'Mystery Diner')
+                ->subject('Đăng ký thành công')
+                ->view('mails.vi.newuser', ['email_data' => $data])
+                ->attach($data['file'], array(
+                    'mime'  =>  'application/pdf'
+                ));
+        }
     }
 }

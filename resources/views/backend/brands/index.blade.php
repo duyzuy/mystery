@@ -138,12 +138,31 @@
 
 
         function deleteBrand(Id) {
-     
-            document.getElementById('brand-'+Id).submit()
+            Swal.fire({
+            title: 'Delete Brand',
+            text: "if Yes, all Resraurent are related this brand will be deleted",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete all!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                
+                'Deleted!',
+                'Your file has been deleted.',
+                'success',
+                document.getElementById('brand-'+Id).submit()
+                
+              )
+            }
+          })
+            
         }
  
  
-
+        
 
 
     </script>

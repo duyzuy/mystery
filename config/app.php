@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Ho_Chi_Minh',
 
     /*
     |--------------------------------------------------------------------------
@@ -242,7 +242,10 @@ return [
         'UserCheck' => App\Helpers\UserCheck::class,
         'SwitchLanguage' => App\Helpers\SwitchLanguage::class,
         'TimeFormat' => App\Helpers\TimeFormat::class,
+        'CheckRegistration' => App\Helpers\CheckRegistration::class,
+        'Autop' => App\Helpers\Autop::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'ConvertViToEn' => App\Helpers\ConvertViToEn::class,
         
     ],
 

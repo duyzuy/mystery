@@ -30,9 +30,17 @@ class VerifyEmail extends Mailable
      * @return $this
      */
     public function build()
-    {
-        return $this->from(env('MAIL_USERNAME'), 'Mystery register successful')
-        ->subject('Email Approved')
-        ->view('mails.verified', ['email_data' => $this->email_data]);
+    {   
+        $data = $this->email_data;
+        if($data['locale'] == 'en'){
+            return $this->from(env('MAIL_USERNAME'), 'Mystery register successful')
+            ->subject('Email Approved')
+            ->view('mails.verified', ['email_data' => $data]);
+        }else{
+            return $this->from(env('MAIL_USERNAME'), 'Mystery register successful')
+            ->subject('Xác nhận đăng ký')
+            ->view('mails.verified', ['email_data' => $data]);
+        }
+     
     }
 }

@@ -27,7 +27,7 @@
             <div class="columns is-centered">
                 <div class="column is-7">
                     <div class="content has-text-centered has-text-white">
-                        <h1 class="has-text-white">Thanks You</h1>
+                        <h1 class="has-text-white">Thank you for your confirmation</h1>
                         @lang('page.thank.content')
                     </div>
                 </div>

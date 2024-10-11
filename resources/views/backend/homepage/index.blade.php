@@ -41,10 +41,10 @@
 
                 @php
                 
-                    $data_1_vi = json_decode($section1->translate('vi')->setting_value, true);
-                    $data_1_en = json_decode($section1->translate('en')->setting_value, true);
-                    $footer_en = json_decode($footer->translate('en')->setting_value, true);
-                    $footer_vi = json_decode($footer->translate('vi')->setting_value, true);
+                    $data_1_vi = $section1->translate('vi')->setting_value ? json_decode($section1->translate('vi')->setting_value, true) : array('title' => '', 'content' => '');
+                    $data_1_en = $section1->translate('en')->setting_value ? json_decode($section1->translate('en')->setting_value, true) : array('title' => '', 'content' => '');
+                    $footer_en = $footer->translate('en')->setting_value ? json_decode($footer->translate('en')->setting_value, true) : array('title' => '', 'content' => '');
+                    $footer_vi = $footer->translate('vi')->setting_value ? json_decode($footer->translate('vi')->setting_value, true) : array('title' => '', 'content' => '');
 
                 @endphp
 

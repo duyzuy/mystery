@@ -14,7 +14,8 @@ class Survey extends Model
     //
 
     protected $fillable = [
-        'store_website', 'store_image', 'city_id'
+        'store_website', 'store_image', 'city_id',
+        'questionnaire_id'
     ];
 
 
@@ -27,6 +28,13 @@ class Survey extends Model
         return $this->hasMany(SurveyResponse::class);
     }
 
+
+    // public function responseSum()
+    // {
+    //     return $this->hasMany(SurveyResponse::class)->selectRaw('survey_id, sum(survey_responses.point) as aggregate')->groupBy('question_id');
+    // }
+
+
     public function user(){
         return $this->belongsTo(User::class);
     }
@@ -37,5 +45,11 @@ class Survey extends Model
 
     public function store(){
         return $this->belongsTo(Store::class);
+    }
+    public function brand(){
+        return $this->belongsTo(Brand::class, 'brand_id', 'id');
+    }
+    public function city(){
+        return $this->belongsTo(City::class);
     }
 }

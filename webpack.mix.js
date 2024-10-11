@@ -14,6 +14,7 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/alert.js', 'public/js')
     .sass('resources/sass/alert.scss', 'public/css')
+    .sass('resources/sass/backend.scss', 'public/css/backend')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/frontend/overrides.scss', 'public/css/frontend').options({
         processCssUrls: false

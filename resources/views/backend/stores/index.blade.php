@@ -11,18 +11,18 @@
       <div class="container-fluid">
         <div class="row mb-5">
           <div class="col-sm-6">
-            <h1>Restaurents</h1>
+            <h1>Restaurants</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Restaurents</li>
+              <li class="breadcrumb-item active">Restaurants</li>
             </ol>
           </div>
         </div>
         <div class="row mb-2">
             <div class="col-sm-12">
-                <a class="btn btn-primary" href="{{ route('stores.create') }}">Add new Restaurent</a>
+                <a class="btn btn-primary" href="{{ route('stores.create') }}">Add new Restaurant</a>
             </div>
         
           </div>
@@ -35,15 +35,16 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Restaurent list</h3>
+          <h3 class="card-title">Restaurant list</h3>
         </div>
         <div class="card-body">
           <table id="dataTable" class="table table-bordered table-striped">
               <thead>
                     <tr>
                         <th style="width: 5%">#</th>
-                        <th style="width: 30%">Restaurent name</th>
-                        <th style="width: 10%">Region</th>
+                        <th style="width: 5%">Code</th>
+                        <th style="width: 35%">Restaurant name</th>
+                        {{-- <th style="width: 10%">Region</th> --}}
                         <th style="width: 15%">City</th>
                         <th style="width: 20%">brand</th>
                         
@@ -55,8 +56,9 @@
                   @foreach($stores as $key => $store)
                     <tr>
                         <td>{{ $key+1 }}</td>
+                        <td style="text-transform:uppercase">{{ $store->code }}</td>
                         <td>{{ $store->translate('en')->store_name }}</td>
-                        <td>{{ $store->city->region->translate('en')->name }}</td>
+                        {{-- <td>{{ $store->city->region->translate('en')->name }}</td> --}}
                         <td>{{ $store->city->translate('en')->name }}</td>
                         <td>{{ $store->brand->name }}</td>
                         <td>

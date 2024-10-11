@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{ asset('img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">MYSTERY</span>
+      <span class="brand-text font-weight-light">MYSTERY DINER</span>
     </a>
 
     <!-- Sidebar -->
@@ -36,12 +36,17 @@
           </li>
         </ul>
       </nav>
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center justify-content-between">
+        <div class="user_inform d-flex">
+          <div class="image">
+            <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          </div>
         </div>
-        <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+        <div class="reset">
+          <a href="{{ route('admin.resetpassword') }}">Reset</a>
         </div>
       </div>
      
@@ -102,7 +107,7 @@
           <li class="nav-item">
             <a href="{{ route('stores.index') }}" class="nav-link  {{ Request::is('manage/store*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
-              <p>Restaurents</p>
+              <p>Restaurants</p>
             </a>
           </li>
           <li class="nav-item">
@@ -111,19 +116,56 @@
               <p>Users @if(count($user_notactive) != 0)<span class="right badge badge-danger">{{ count($user_notactive) }}</span> @endif</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('manage.invitement.list') }}" class="nav-link  {{ Request::is('manage/invitement*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-id-badge"></i>
+              <p>Invitement</p>
+            </a>
+          </li>
           <li class="nav-header">REPORT</li>
           <li class="nav-item">
             <a href="{{ route('manage.questionnaire.report') }}" class="nav-link {{ Request::is('manage/report/questionnaires*') ? 'active' : '' }}">  
-              <i class="fas fa-city nav-icon"></i>
+              <i class="nav-icon far fa-file-excel"></i>
               <p>Questionnaire</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{ route('manage.survey.responses') }}" class="nav-link {{ Request::is('manage/report/responses*') ? 'active' : '' }}">  
-              <i class="fas fa-city nav-icon"></i>
+              <i class="nav-icon far fa-file-excel"></i>
               <p>Responses @if(count($response_prevew) != 0)<span class="right badge badge-danger">{{ count($response_prevew) }}</span> @endif</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('manage.report.monthly') }}" class="nav-link {{ Request::is('manage/report/monthly-report*') ? 'active' : '' }}">  
+              <i class="nav-icon far fa-file-excel"></i>
+              <p>Monthly report</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('manage.report.brand.yn.show') }}" class="nav-link {{ Request::is('manage/report/brand-yn*') ? 'active' : '' }}">  
+              <i class="nav-icon far fa-file-excel"></i>
+              <p>Brand report YN</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('manage.report.guestComment') }}" class="nav-link {{ Request::is('manage/report/guest-comment*') ? 'active' : '' }}">  
+              <i class="nav-icon far fa-file-excel"></i>
+              <p>Guest comment</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('manage.registered.report') }}" class="nav-link {{ Request::is('manage/report/registered*') ? 'active' : '' }}">  
+              <i class="nav-icon far fa-file-excel"></i>
+              <p>Registration Report</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('manage.top.restaurant.show') }}" class="nav-link {{ Request::is('manage/report/top-restaurant*') ? 'active' : '' }}">  
+              <i class="nav-icon far fa-file-excel"></i>
+              <p>Top Restaurants</p>
+            </a>
+          </li>
+
          
           <li class="nav-item text-center border mt-3">
             <a class="nav-link" href="{{ route('admin.logout') }}"

@@ -15,7 +15,7 @@ class Store extends Model
     //
 
     protected $fillable = [
-        'store_website', 'store_image', 'city_id', 'brand_id', 'lat', 'lang'
+        'store_website', 'store_image', 'city_id', 'brand_id', 'lat', 'lang', 'code'
     ];
 
     public $translatedAttributes = ['store_name', 'store_address', 'store_description'];
@@ -36,4 +36,17 @@ class Store extends Model
     public function brand(){
         return $this->belongsTo(Brand::class);
     }
+    public function surveys(){
+        return $this->hasMany(Survey::class, 'store_id', 'id'); 
+    }
+
+    public function surveyPointSum(){
+        return $this->hasMany(Survey::class, 'store_id', 'id')->selectRaw('store_id, SUM(surveys.total_point) as aggregate, COUNT(surveys.id) as totalSurvey')->groupBy('store_id');
+    }
+
+    public function userStores()
+    {
+       return $this->hasManyJson(UserStore::class, 'stores');
+    }
+
 }

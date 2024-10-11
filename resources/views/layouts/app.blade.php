@@ -21,6 +21,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('css/backend/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/alert.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backend/backend.css') }}">
     <script src="{{ asset('js/alert.js') }}"></script>
     @stack('styles')
 </head>

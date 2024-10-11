@@ -17,7 +17,7 @@ class CheckApproval
     public function handle($request, Closure $next)
     {
        
-        if(Auth::user()->actived == 1 && !Survey::where([['user_id', Auth::user()->id], ['questionnaire_id', $request->id]])->exists()){
+        if(Auth::user()->actived == 1){
             return $next($request);
         }
         

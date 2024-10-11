@@ -52,7 +52,7 @@ class CreateQuestionsTable extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('question_id')->unsigned();
-            $table->integer('point')->unsigned();
+            $table->integer('point');
             $table->string('key');
             $table->boolean('show_textarea')->default(0);
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');

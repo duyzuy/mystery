@@ -31,7 +31,7 @@ class SignupEmail extends Mailable
      */
     public function build()
     {
-        return $this->from(env('MAIL_USERNAME'), 'Mystery')
+        return $this->from(env('MAIL_USERNAME'), 'Mystery Diner')
                 ->subject('User register')
                 ->view('mails.signup', ['email_data' => $this->email_data]);
     }

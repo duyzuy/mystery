@@ -128,8 +128,8 @@ div.content{
                                             <div class="col-6">
                                                 <div class="form-group">
                                                 
-                                                    <label>Point for yes answer (min-max: 0-10 point)</label>
-                                                    <input type="number" class="form-control" min="0" max="10" name="answers[point][yes]" value="{{ $question['answers'][0]['point'] }}">
+                                                    <label>Point for yes answer</label>
+                                                    <input type="number" class="form-control" min="-10" max="10" name="answers[point][yes]" value="{{ $question['answers'][0]['point'] }}">
                                                 </div>
                                             </div>
                                             <div class="col-6 d-flex align-items-center">
@@ -142,8 +142,8 @@ div.content{
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group">
-                                                    <label>Point for no answer (min-max: 0-10 point)</label>
-                                                    <input type="number" class="form-control" min="0" max="10" name="answers[point][no]" value="{{ $question['answers'][1]['point'] }}">
+                                                    <label>Point for no answer</label>
+                                                    <input type="number" class="form-control" min="-10" max="10" name="answers[point][no]" value="{{ $question['answers'][1]['point'] }}">
                                                 </div>
                                             </div>
                                             <div class="col-6 d-flex align-items-center">
@@ -155,8 +155,9 @@ div.content{
                                         </div>
                                     </div>
                                     <!--yes/no type-->
+                                    
                                     @elseif($question->type == 'choice')
-                                    <div class="answer_choice_type" v-else-if="answerType == 'choice' ">
+                                    <div class="answer_choice_type" v-if="answerType == 'choice'">
                                       <h4>Choice</h4>
                                       <p>Add the answer choice and point for each choice</p>
                                       <div class="card">

@@ -86,4 +86,23 @@ class CityController extends Controller
         
         return response()->json($data, 200);
     }
+
+    public function restaurantCode(Request $request){
+        $codes = Store::pluck('code');
+        $data = [];
+        foreach($codes as $key => $code){
+            $data[$key]['code'] = $code;
+        }
+        return response()->json($data, 200);
+    }
+
+    public function checkRestaurantCode(Request $request, $code){
+        $check = Store::where('code', $code)->exists();
+
+        if($check){
+            return response()->json('valid', 200);
+        }
+        
+        return response()->json('invalid', 200);
+    }
 }

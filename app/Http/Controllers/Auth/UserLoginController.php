@@ -7,11 +7,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use App\Components\FlashMessages;
+use App\User;
 
 class UserLoginController extends Controller
 {
-    use AuthenticatesUsers;
+    use AuthenticatesUsers, FlashMessages;
+   
 
     // protected $redirectTo = RouteServiceProvider::HOME;
 
@@ -39,11 +41,18 @@ class UserLoginController extends Controller
     {
        //validate this form data
         $this->validate($request, [
-            'email' =>  'required|email',
+            'email' =>  'required|email|exists:users,email',
             'password'  =>  'required|min:6',
         ]);
 
-       
+
+        $user = User::where('email', $request->email)->firstOrFail();
+        // if($user->actived === 0){
+        //         self::info('Your account was not actived');
+        //     return redirect()->back();
+        // }
+
+        
        //Attempt to log the user in
        if(Auth::guard('web')->attempt(['email' => $request->email,'password' => $request->password])){
             //if successful, then redirect to their intended location

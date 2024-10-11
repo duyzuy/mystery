@@ -9,33 +9,28 @@ return [
         'whatWeneed'    =>  'WHAT WE NEED FROM YOU',
         'subWhat'       =>  'Here are the basic requirements',  
         'whereWe'       =>  'Where we operate',
-        'howItWork'     =>  'How it work'    
+        'howItWork'     =>  'Become a mystery diner'    
     ],
     'homeContent'   =>  [
         'howItWork'     =>  [
-            'title_1'       =>  'Book a visit',
-            'content_1'     =>  'Book a visit & read the brief on what to expect & what to look out for.',
-            'title_2'       =>  'Go out',
-            'content_2'     =>  'Enjoy your dinner!',
-            'title_3'       =>  'Complete report',
-            'content_3'     =>  'Log in to your portal, complete your report and submit before noon the next day.',
-            'title_4'       =>  'Clarify details',
-            'content_4'     =>  'We’ll give you a call after you’ve submitted the report if we need any more details.',
-            'title_5'       =>  'Get reimbursed',
-            'content_5'     =>  'Your agreed expenses will be paid into your account 3-4 weeks after your visit.'
+            'title_1'       =>  'Register',
+            'title_2'       =>  'Make a mystery diner reservation',
+            'title_3'       =>  'Complete the mystery diner form',
+            'title_4'       =>  'Get special rewards',
         ],
         'whatWeneed'    =>  [
-            'content_1'     =>  'Ability to make detailed observations and record them in clear English',
-            'content_2'     =>  'A commitment to fully complete any visits that you book with us',
-            'content_3'     =>  'Availability by phone for report queries the day after your visit',
+            'content_1'     =>  'The ability to observe details and give feedback to each question and respond in detail.',
+            'content_2'     =>  'Respond and complete all online questions in the Mystery Diner Form and send back within 24 hours of your reservation.',
+            'content_3'     =>  'Be phone ready to receive a call following the confirmation of your lodged Mystery Diner Form the following day.',
 
         ]
     ],
     'slogan'       =>  [
-            'title'     =>      'Mystery dinner',
+            'title'     =>      'Mystery diner',
             'sub'       =>      'Become a part of our Mystery guest comminity'
     ],
     'thank'     =>  [
-        'content'   =>  'Thank you for registering and becoming our community, please wait for us to confirm the information and email confirmation.'
+        'content'   =>  'Thank you for your information. If you need more info’s, please send to us via guestsurvey@afg.vn'
     ]
 ];
+

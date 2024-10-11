@@ -6,7 +6,7 @@ return [
         'work'      =>      'How it work',
         'what'      =>      'What we need',
         'contact'   =>      'Contact',
-        'store'     =>      'Restaurent',
+        'store'     =>      'Restaurant',
         'support'   =>      'Support chanel', 
         'profile'   =>      'Profile'
     ]

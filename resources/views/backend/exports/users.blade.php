@@ -5,7 +5,6 @@
         <th>Email</th>
         <th>Phone</th>
         <th>Address</th>
-        <th>Store name</th>
         <th>Bank name</th>
         <th>Card number</th>
         <th>Bank address</th>
@@ -20,7 +19,6 @@
             <td>{{ $user->email }}</td>
             <td>{{ $user->phone_number }}</td>
             <td>{{ $user->address }}</td>
-            <td>{{ $user->store->translate('en')->store_name }}</td>
             <td>{{ $user->bank_name }}</td>
             <td>{{ $user->bank_number }}</td>
             <td>{{ $user->bank_address }}</td>

@@ -112,6 +112,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Restaurant code on bill</label>
+                                    <input type="text" class="form-control @error('code') is-invalid @enderror" min="3" max="3" name="code" placeholder="etc: VHM" value="{{ $store->code }}">
+                                    @error('code')
+                                        <span class="error invalid-feedback" role="alert">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                       
                        
                       

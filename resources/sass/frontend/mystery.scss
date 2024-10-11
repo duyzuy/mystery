@@ -22,10 +22,11 @@ footer{
     }
 }
 .absolute-footer{
-    background: #03d1b2;
+    background: #f15a22;
     padding: 10px 0;
     text-align: right;
     height: 40px;
+    color: #fff;
     p{
         margin-bottom: 0;
         display: inline-block;
@@ -177,37 +178,42 @@ footer{
     }
 }
 .boxes-flow-work{
+    display: flex;
+    flex-wrap: wrap;
     .box{
         height: 100%;
         box-shadow: none;
-        padding: 1rem
-   
+        padding: 1rem;
+        width: 25%;
+        text-align: center;
+
     }
     .box-image{
-        margin: -1.25rem -1.25rem 1rem;
-        background: #03d1b2;
-        padding: 2.25rem;
+        background: #f15a22;
+        padding: 1rem;
+        border-radius: 50%;
+        width: 100%;
+        max-width: 160px;
+       
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto
     }
-    @media screen and (max-width: 559px), print{
-        .box-image{
-            margin: 0;
-            width: 120px;
-            padding: 1.25rem;
-          
-        }
-        .box{
-            display: flex;
-            padding: 0.85rem;
-            border: 1px solid #03d1b2;
-        }
-        .box-content{
-            padding-left: 1rem;
-            flex: 1;
-        }
+    .box-image img{
+        line-height: 0;
+        display: block;
     }
     .box-content{
-        text-align: center;
+       flex: 1
     }
+    @media screen and (max-width: 767.9px), print{
+      
+        .box{
+            width: 50%;
+        }
+      
+    }
+  
 }
 .section-store{
     .content-section{
@@ -251,9 +257,54 @@ footer{
         }
     }
 }
-.box-info{
-    line-height: 2.1;
+.profile{
+    font-size: 14px;
+    .box{
+        border: 1px solid #f1f1f1;
+        box-shadow: none;
+    }
+    .box-info{
+        line-height: 2;
+    }
 }
+
+.store__registration{
+    padding: 20px;
+    background: #fafafa;
+    border-radius: 8px;
+
+    .card{
+        box-shadow: none;
+        border: 1px solid #f1f1f1;
+        border-radius: 8px;
+       
+    }
+    .not{
+        .card{
+            border-color: $danger;
+        }
+    }
+    .chosed{
+        .card{
+            border-color: $success;
+        
+        }
+        .fa-check{
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: white;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            background:  $success;
+            border-radius: 0 6px 0 40px;
+            text-align: center;
+        }
+
+    }
+}
+
 .is-float-right{
     float: right;
 }
@@ -272,7 +323,7 @@ footer{
 }
 .survey__description{
     padding: 1.25rem;
-    border: 1px solid #03d1b2;
+    border: 1px solid #f15a22;
     line-height: 2;
     background-color: rgb(3 209 178 / 8%);
 }
@@ -284,13 +335,21 @@ footer{
 }
 .navbar-item {
     &.nav-primary{
-        background: #03d1b2;
+        background: #f15a22;
         color: #fff;
         span.icon{
             color: #fff
         }
     }
+    img.logo{
+        max-height: 50px;
+    }
     
+}
+.afg-menu-header{
+    .navbar-brand{
+        align-items: center;
+    }
 }
 // .store__sliders{
 //     max-width: 80%;
@@ -393,7 +452,7 @@ footer{
         margin: auto;
         width: 150px;
         height: 150px;
-        background: #03d1b2;
+        background: #f15a22;
         border-radius: 50%;
         margin-bottom: -30px;
         border: 5px solid;
@@ -415,7 +474,7 @@ footer{
             margin: auto;
             width: 200px;
             height: 200px;
-            background: #03d1b2;
+            background: #f15a22;
             border-radius: 50%;
             margin-bottom: -30px;
             border: 5px solid;
@@ -438,6 +497,41 @@ footer{
     &.active {
         .navbar-dropdown{
             display: block !important;
+        }
+    }
+}
+.control.is-loading::after, .select.is-loading::after, .loader, .button.is-loading::after{
+    border-bottom-color: #f15a23;
+    border-left-color: #f15a23;
+
+}
+.box-brands{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    .brand-item{
+        padding: 10px;
+        height: 100px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        a{
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            height: 100%;
+        }
+        img{
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        @media screen and (max-width: 768px), print {
+       
+            max-width: 140px;
+            height: 80px;
+       
         }
     }
 }

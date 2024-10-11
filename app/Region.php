@@ -26,6 +26,6 @@ class Region extends Model implements TranslatableContract
         return $this->hasMany(RegionTranslation::class, 'region_id', 'id');
     }
 
- 
-
+  
+    
 }

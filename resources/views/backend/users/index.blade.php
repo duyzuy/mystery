@@ -48,19 +48,20 @@
           <div class="row">
             <div class="col-6">
               <a href="{{ route('manage.user.list') }}" class="btn {{ Request::is('manage/users') ? 'active' : '' }}"> All </a>
-              <a href="{{ route('manage.user.filter', 'actived') }}" class="btn {{ Request::is('manage/user&status=actived') ? 'active' : '' }}"> User actived </a>
-              <a href="{{ route('manage.user.filter', 'unactive') }}" class="btn {{ Request::is('manage/user&status=unactive') ? 'active' : '' }}"> User un-active </a>
+              {{-- <a href="{{ route('manage.user.filter', 'actived') }}" class="btn {{ Request::is('manage/user&status=actived') ? 'active' : '' }}"> User actived </a> --}}
+              {{-- <a href="{{ route('manage.user.filter', 'unactive') }}" class="btn {{ Request::is('manage/user&status=unactive') ? 'active' : '' }}"> User un-active </a> --}}
             </div>
             <div class="col-6">
+            
               @if(Request::is('manage/user&status=actived'))
 
                 <a href="{{ route('manage.user.export', 'actived') }}" class="btn btn-primary btn-sm float-right">Export</a>
 
-              @elseif(Request::is('manage/user&status=unactive'))
+              {{-- @elseif(Request::is('manage/user&status=unactive'))
 
                 <a href="{{ route('manage.user.export', 'unactive') }}" class="btn btn-primary btn-sm float-right">Export</a>
 
-              @else
+              @else --}}
 
                 <a href="{{ route('manage.user.export', 'all') }}" class="btn btn-primary btn-sm float-right">Export</a>
                 
@@ -83,11 +84,11 @@
         
         </div>
         <div class="card-body">
-          <table class="table table-striped projects table table-bordered" id="tableData" data-page-length='25'>
+          <table class="table projects table table-bordered" id="tableData" data-page-length='25'>
               <thead>
                     <tr>
                         <th style="width: 5%">
-                            #
+                            #ID
                         </th>
                         <th style="width: 15%">
                             User name
@@ -95,31 +96,38 @@
                         <th style="width: 15%">Email</th>
                         <th style="width: 15%">Phone number</th>
                     
-                        <th style="width: 10%">
+                        {{-- <th style="width: 10%">
                            Status
-                        </th>
+                        </th> --}}
                         <th style="width: 15%">Actions</th>
                         <th style="width: 15%">Register at</th>
+                        <th class="d-none"></th>
                     </tr>
               </thead>
               <tbody>
                  
                   @foreach($users as $key => $user)
                     <tr>
-                        <td>{{ $key + 1 }}</td>
+                        <td>#{{ $key + 1 }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone_number }}</td>
-                        <td>{!! $user->actived == 0 ? '<span class="badge badge-danger">Unactive</span>' :  '<span class="badge badge-success">Actived</span>' !!}</td>
+                        {{-- <td>{!! $user->actived == 0 ? '<span class="badge badge-danger">Unactive</span>' :  '<span class="badge badge-success">Actived</span>' !!}</td> --}}
                         <td>
-                            <a class="btn btn-primary btn-sm" href="{{ route('manage.user.show', $user->id) }}"><i class="fas fa-user"></i> View</a>
-                            <a class="btn btn-info btn-sm" href="{{ route('manage.user.edit', $user->id) }}"><i class="fas fa-pencil-alt"></i> Edit</a>
+                            <a class="btn btn-outline-primary btn-sm mr-2" target="_blank" href="{{ route('manage.user.show', $user->id) }}">View</a>
+                            <a class="btn btn-outline-info btn-sm" href="{{ route('manage.export.userprofile', $user->id) }}">Export</a>
+                            {{-- <a class="btn btn-info btn-sm" href="{{ route('manage.user.edit', $user->id) }}"><i class="fas fa-paper-plane mr-1"></i>New password</a> --}}
                         </td>
-                        <td>{{ date('M j, Y h:ia', strtotime($user->created_at)) }}</td>
+                        <td>{{ date('M j, Y', strtotime($user->created_at)) }}</td>
+                        <td class="d-none">{{ $user->id }}</td>
                     </tr>
                   @endforeach
               </tbody>
+             
           </table>
+     
+         
+         
         </div>
         <!-- /.card-body -->
       </div>
@@ -153,12 +161,10 @@
   
     //Date range as a button
    
-
-  
-
         $('#tableData').DataTable({
             "responsive": true,
             "autoWidth": false,
+            "order": [[ 6, "desc" ]]
         });
     });
 

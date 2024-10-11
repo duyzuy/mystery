@@ -24,7 +24,7 @@ class StoreController extends Controller
     public function index()
     {
         //
-        $stores = Store::all();
+        $stores = Store::orderBy('id', 'desc')->get();
         return view('backend.stores.index', compact(['stores']));
     }
 
@@ -62,6 +62,7 @@ class StoreController extends Controller
             'en_store_address'  =>  'required',
             'brand'             =>  'required',
             'store_image'       =>  'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'code'              =>  'required|min:3'
         ]);
         
        
@@ -84,10 +85,12 @@ class StoreController extends Controller
         }
 
         $store_data = [
+            'code'              =>  $request->code,
             'store_website'     =>  $request->website,
             'city_id'           =>  $request->city,
             'store_image'       =>  $fileName,
             'brand_id'          =>  $request->brand,
+            
             'vi' => [
                 'store_name'            => $request->vi_store_name, 
                 'store_address'         => $request->vi_store_address, 
@@ -151,11 +154,13 @@ class StoreController extends Controller
             'en_store_name'     =>  'required',
             'en_store_address'  =>  'required',
             'brand'             =>  'required',
+            'code'              =>  'required',
             'store_image'       =>  'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
    
         $store_data = [
+            'code'              =>  $request->code,
             'store_website'     =>  $request->website,
             'city_id'           =>  $request->city,
             'brand_id'          =>  $request->brand,

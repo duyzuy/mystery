@@ -2,9 +2,10 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'address', 'store_id', 'phone_number', 'bank_name', 'bank_number', 'bank_address', 'actived', 'token'
+        'name', 'email', 'password', 'address', 'questions', 'gender', 'phone_number'
     ];
 
     /**
@@ -56,4 +57,14 @@ class User extends Authenticatable
     public function brand(){
         return $this->belongsTo('App\Brand');
     }
+
+    public function userRestaurents(){
+        return $this->hasMany('App\UserStore', 'user_id', 'id');
+    }
+
+    public function userSignupRespone(){
+        return $this->hasMany(SignupResponse::class, 'user_id', 'id');
+    }
+
+  
 }

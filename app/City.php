@@ -35,7 +35,5 @@ class City extends Model implements TranslatableContract
         return $this->belongsTo(Region::class);
     }
     
-    public function brands(){
-        return $this->belongsTo(Store::class, 'city_id', 'brand_id' );
-    }
+  
 }

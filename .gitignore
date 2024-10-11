@@ -1,16 +1,14 @@
 /node_modules
-hot
 /public/admin
-/public/Lưu trữ.zip
 /public/storage
 /storage/*.key
 /vendor
 .env
 .env.backup
 .phpunit.result.cache
-Homestead.json
-Homestead.yaml
-npm-debug.log
-yarn-error.log
-symlinkcreate.php
-Lưu trữ.zip
+/Homestead.json
+/Homestead.yaml
+/npm-debug.log
+/symlinkcreate.php
+mystery.zip
+public/zip

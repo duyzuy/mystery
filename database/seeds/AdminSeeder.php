@@ -32,9 +32,9 @@ class AdminSeeder extends Seeder
         DB::table('admins')->insert([
             [
                 'name' => 'admin',
-                'email' => 'admin@gmail.com',
+                'email' => 'guestsurvey@afg.vn',
                 'roles_id'  =>  1,
-                'password' => Hash::make('password'),
+                'password' => Hash::make('guestSV@afg'),
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
