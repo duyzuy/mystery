@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
     'logout' =>  'Logout',
     'register'  =>  'Register',
@@ -11,7 +11,7 @@ return [
         'phone'         =>  'Phone number',
         'registerTitle' =>  'Your registered restaurant',
         'birthDay'      =>  'Birthday',
-        'gender'        =>  'Gender',   
+        'gender'        =>  'Gender',
         'newRegistration' =>  'Registration',
         'outOfRegistration' =>  'Your registration out of limited, thanks you',
         'region'            =>  'Region',
@@ -23,7 +23,7 @@ return [
         'statusCancel'      =>  'Canceled',
         'statusCompleted'      =>  'Completed',
     ],
-   
+
     'button'    =>  [
         'takesurvey'    =>  'Click here to complete the Mystery Diner Form',
         'register'      =>  'Registration',
@@ -35,7 +35,7 @@ return [
     ],
     'label' =>  [
         'restaurentName'        =>  'Restaurant name',
-        'addressTitle'          =>  'Address', 
+        'addressTitle'          =>  'Address',
         'timeTitle'             =>  'Time to go to the restaurant',
         'managerName'           =>  'Manager name',
         'staffName'             =>  'Staff name',
@@ -99,7 +99,7 @@ return [
                 'other'       =>      'Other',
             ],
             'answer'        =>      'Answer'
-            
+
         ],
         'answer'    =>  [
             '1'     =>  [
@@ -134,7 +134,7 @@ return [
             '5' =>  [
                 'yes'   => 'Yes',
                 'no'    =>  'No',
-                'yeslabelCheck' =>  'Please name those restaurants.' 
+                'yeslabelCheck' =>  'Please name those restaurants.'
             ]
         ],
         'pageLabel'         =>      'Registration',
@@ -143,7 +143,7 @@ return [
         'labelEmail'    =>  'Email',
         'labelPassword' =>  'Password',
         'label'         =>  'Login'
-    ],   
+    ],
     'survey'    =>  [
         'anotherQuestion'       =>          'Another',
         'buttonSubmit'          =>          'Send to us',
@@ -238,7 +238,13 @@ return [
                     '37' =>  'The question 37 is required',
                 ]
             ]
-            
+
+        ]
+    ],
+    'confirmation' => [
+        'error' => [
+            'answer'    =>  "Please choose 'Yes' or 'No'.",
+            'token'    =>  "Missting token."
         ]
     ]
 

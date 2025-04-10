@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\FromView;
 
 class UserAllBillView implements FromView
 {
-     
+
     public $view;
     public $surveys;
 
@@ -20,10 +20,11 @@ class UserAllBillView implements FromView
 
     public function view(): View
     {
-      
-        return view($this->view, [
-                'surveys' => $this->surveys, 
-              
+
+        return view(
+            $this->view,
+            [
+                'surveys' => $this->surveys,
             ]
         );
     }

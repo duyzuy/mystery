@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
     'storeCityTitle' =>  'Thành phố',
     'storeAdressTitle' =>  'Địa chỉ',
@@ -7,9 +7,9 @@ return [
     ],
     'homePage'  =>  [
         'whatWeneed'            =>  'CHÚNG TÔI CẦN GÌ TỪ BẠN',
-        'subWhat'               =>  'Bạn chỉ cần đáp ứng yêu cầu cơ bản sau', 
+        'subWhat'               =>  'Bạn chỉ cần đáp ứng yêu cầu cơ bản sau',
         'whereWe'               =>  'Nhà hàng',
-        'howItWork'             =>  'Cách tham gia'    
+        'howItWork'             =>  'Cách tham gia'
     ],
     'homeContent'   =>  [
         'howItWork'     =>  [
@@ -25,11 +25,21 @@ return [
 
         ]
     ],
-        'slogan'       =>  [
-            'title'     =>      'Mystery diner',
-            'sub'       =>      'Hãy tham gia và trở thành cộng đồng khách hàng bí ẩn của chúng tôi'
-        ],
-        'thank'     =>  [
-            'content'   =>  'Cảm ơn bạn đã đăng ký và tham gia với chúng tôi. Nếu bạn cần thêm thông tin, vui lòng gửi cho chúng tôi qua địa chỉ guesturvey@afg.vn'
-        ]
+    'slogan'       =>  [
+        'title'     =>      'Mystery diner',
+        'sub'       =>      'Hãy tham gia và trở thành cộng đồng khách hàng bí ẩn của chúng tôi'
+    ],
+    'thank'     =>  [
+        'content'   =>  'Cảm ơn bạn đã đăng ký và tham gia với chúng tôi. Nếu bạn cần thêm thông tin, vui lòng gửi cho chúng tôi qua địa chỉ guesturvey@afg.vn'
+    ],
+    'confirmation'     =>  [
+        "title" =>  "Xác nhận",
+        "subTitle" =>  "Vui lòng chọn xác nhận tham gia hoặc không tham gia bên dưới.",
+        'cancelButton'      =>  '2) Không, mốc thời gian đó không phù hợp với tôi nhưng vui lòng gửi lại vì tôi vẫn quan tâm.',
+        'confirmButton'     =>  '1) Có, tôi có thể và tôi sẽ thực hiện theo thời gian ghi trên thư mời.',
+        'storeName'   =>  'Nhà hàng',
+        'storeAddress'   =>  'Địa chỉ',
+        'checkIn'   =>  'Thời gian',
+        'boxTitle'   =>  'Thông tin tham dự',
+    ],
 ];

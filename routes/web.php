@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::prefix('manage')->group(function() {
+Route::prefix('manage')->group(function () {
 
     //admin login form
     Route::get('login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
@@ -50,7 +50,7 @@ Route::prefix('manage')->group(function() {
         Route::post('homepage/slider', 'SettingController@sliderCreate')->name('manage.slider.create');
         Route::get('homepage/slider/{slider}/edit', 'SettingController@sliderEdit')->name('manage.slider.edit');
         Route::match(['PUT', 'PATCH'], 'homepage/slider/{slider}', 'SettingController@sliderUpdate')->name('manage.slider.update');
-        
+
         Route::delete('homepage/slider/{id}', 'SettingController@sliderDelete')->name('manage.slider.delete');
 
 
@@ -97,7 +97,7 @@ Route::prefix('manage')->group(function() {
         //Report
         Route::get('report/questionnaires', 'AdminController@questionnaireReport')->name('manage.questionnaire.report');
         Route::get('report/questionnaires/{questionnaire}/questions&filter={filter}', 'AdminController@questionsFilter')->name('manage.questionnaire.report.filter');
-        
+
         Route::get('report/responses', 'AdminController@responses')->name('manage.survey.responses');
         Route::get('report/responses/{id}', 'AdminController@responsesDetail')->name('manage.survey.response.detail');
         Route::get('report/responses/edit/user/{userId}/survey/{surveyId}', 'AdminController@surveyEdit')->name('manage.survey.edit');
@@ -115,7 +115,7 @@ Route::prefix('manage')->group(function() {
 
         Route::get('export/monthly&qid={questionnaireId}&region={regionFilter}&brand={brandFilter}&restaurant={restaurantFilter}&df={dateFrom}&dt={dateTo}&at={answerType}', 'AdminExportController@monthlyExport')->name('manage.export.monthly');
         Route::get('export/response&resId={surveyId}', 'AdminExportController@responseExport')->name('manage.export.response');
-    
+
         Route::get('report/guest-comment', 'AdminController@guestCommentReport')->name('manage.report.guestComment');
         Route::post('report/guest-comment', 'AdminController@guestCommentReportFilter')->name('manage.report.guestComment.filter');
         // Route::post('report/guest-comment/filter&q={questionnaireId}&b={brandId}&from={dateFrom}&to={dateTo}', 'AdminController@guestCommentReportFilter')->name('manage.report.guestComment.filter.date');
@@ -130,7 +130,7 @@ Route::prefix('manage')->group(function() {
         Route::post('report/brand-yn', 'AdminController@brandReportYnFilter')->name('manage.report.brand.yn.filter');
         Route::get('export/brand-yn&region={region}&brand={brand}&from={dateFrom}&to={dateTo}', 'AdminExportController@brandYnExport')->name('manage.export.brandYn');
         Route::get('export/user-profile/{id}', 'AdminExportController@userProfileDetail')->name('manage.export.userprofile');
-        Route::get('export/user-bill', 'AdminExportController@userAllBill' )->name('manage.export.user.all.bill');
+        Route::get('export/user-bill', 'AdminExportController@userAllBill')->name('manage.export.user.all.bill');
         Route::get('export/topquestion&questionnaire={questionnaire}&filter={filter}', 'AdminExportController@topQuestion')->name('manage.export.top.question');
         Route::get('export/registrations', 'AdminExportController@registrations')->name('manage.export.registrations');
         Route::get('export/registrations&from={dateFrom}&to={dateTo}', 'AdminExportController@registrationsDate')->name('manage.export.registrations.date');
@@ -150,7 +150,7 @@ Route::prefix('manage')->group(function() {
         Route::get('questionnaire/{questionnaire_id}/questions', 'QuestionController@index')->name('manage.questions.index');
         Route::get('questionnaire/{questionnaire}/questions/{id}', 'QuestionController@show')->name('manage.questions.show');
         Route::get('questionnaire/{questionnaire}/questions/{id}/edit', 'QuestionController@edit')->name('manage.questions.edit');
-       
+
         Route::match(['put', 'patch'], 'questionnaire/{questionnaire}/questions/{id}', 'QuestionController@update')->name('manage.questions.update');
 
         Route::get('top-store', 'AdminController@topStore')->name('manage.top.store');
@@ -159,34 +159,30 @@ Route::prefix('manage')->group(function() {
         Route::get('report/top-restaurant', 'AdminController@topRestaurantShow')->name('manage.top.restaurant.show');
         Route::post('report/top-resturant', 'AdminController@topRestaurant')->name('manage.top.restaurant');
         Route::get('export/top-restaurant&dFrom={dateFrom}&dTo={dateTo}&type={answerType}', 'AdminExportController@topRestaurant')->name('manage.export.top.restaurant');
-
     });
-   
-
-
 });
 
-Route::redirect('/', '/mystery/vi');
+Route::redirect('/', '/vi');
 
-Route::get('/clear-cache-all', function() {
-    Artisan::call('cache:clear');
-  
-    dd("Cache Clear All");
-});
-Route::get('/view-clear', function() {
-    $exitCode = Artisan::call('view:clear');
-    return 'View cache cleared';
-});
+// Route::get('/clear-cache-all', function () {
+//     Artisan::call('cache:clear');
 
-Route::group(['prefix' => '{language}'], function (){
+//     dd("Cache Clear All");
+// });
+// Route::get('/view-clear', function () {
+//     $exitCode = Artisan::call('view:clear');
+//     return 'View cache cleared';
+// });
+
+Route::group(['prefix' => '{language}'], function () {
 
     Route::middleware(['language'])->group(function () {
         Route::get('/', function () {
             return view('welcome');
         })->name('home');
 
-       
-        Route::prefix('user')->group(function(){
+
+        Route::prefix('user')->group(function () {
             //user Login
             Route::get('login', 'Auth\UserLoginController@showLoginForm')->name('user.login');
             Route::post('login', 'Auth\UserLoginController@login')->name('user.login.submit');
@@ -197,8 +193,6 @@ Route::group(['prefix' => '{language}'], function (){
 
             //user logout 
             Route::post('logout', 'Auth\UserLoginController@logout')->name('user.logout');
-
-
         });
 
         Route::middleware(['auth:web'])->group(function () {
@@ -209,7 +203,7 @@ Route::group(['prefix' => '{language}'], function (){
 
                 // Route::post('survey/{id}-{slug}/{index}', 'UserController@store')->name('user.survey.store');
 
-               
+
             });
             Route::get('survey/{id}-{slug}/{index}', 'UserController@surveyDetail')->name('user.survey.detail');
 
@@ -218,10 +212,10 @@ Route::group(['prefix' => '{language}'], function (){
             Route::get('profile', 'UserController@getProfile')->name('user.profile');
 
             Route::post('profile/newregistration', 'UserController@registrationNew')->name('user.profile.registration');
-
         });
 
-        Route::get('user-confirm&token={token}&resq={resq}', 'UserController@userResponseEmail')->name('user.response.email');
+        Route::get('user-confirm&token={token}', 'UserController@userConfirmation')->name('user.page.confirmation');
+        Route::post('user-confirm&token={token}', 'UserController@userResponseEmail')->name('user.made.confirmation');
 
         Route::get('thank-you&token={token}', 'Auth\UserRegisterController@thankyou')->name('user.thankyou');
     });

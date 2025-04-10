@@ -20,7 +20,8 @@ class MailController extends Controller
     *
     * send email to admin after user register
     */
-    public static function sendSignupEmail($name, $email, $locale, $token, $file){
+    public static function sendSignupEmail($name, $email, $locale, $token, $file)
+    {
         $data = [
             'name'      =>  $name,
             'email'     =>  $email,
@@ -39,7 +40,8 @@ class MailController extends Controller
     *
     * send email to user after admin approved
     */
-    public static function sendVerifyedEmail($name, $email, $password, $survey, $token, $locale){
+    public static function sendVerifyedEmail($name, $email, $password, $survey, $token, $locale)
+    {
         $data = [
             'name'      =>  $name,
             'email'     =>  $email,
@@ -47,12 +49,13 @@ class MailController extends Controller
             'survey'    =>  $survey,
             'token'     =>  $token,
             'locale'    =>  $locale
-            
+
         ];
         Mail::to($email)->send(new VerifyEmail($data));
     }
 
-    public static function sendConfirmRegistrationRestaurent($name, $email, $time, $locale, $store, $token){
+    public static function sendConfirmRegistrationRestaurent($name, $email, $time, $locale, $store, $token)
+    {
         $data = [
             'name'  =>  $name,
             'email' =>  $email,
@@ -61,42 +64,45 @@ class MailController extends Controller
             'store'     =>  $store,
             'token'     =>  $token,
         ];
-        
+
         Mail::to($email)->send(new ConfirmRestaurentRegistration($data));
     }
 
     //send notify admin when user response email
-    public static function sendUserConfirmEmail($name, $email, $response, $store){
+    public static function sendUserConfirmEmail($name, $email, $response, $store)
+    {
         $data = [
             'name'  =>  $name,
-            'email' =>  $email, 
-            'response' =>  $response, 
+            'email' =>  $email,
+            'response' =>  $response,
             'store'     =>  $store
         ];
-        
+
         Mail::to('vutruongduy2109@gmail.com')->send(new UserConfirmEmail($data));
     }
 
 
-    public static function sendUserConfirmed($name, $email, $password, $locale, $response){
+    public static function sendUserConfirmed($name, $email, $password, $locale, $response)
+    {
         $data = [
             'name'      =>  $name,
-            'email'     =>  $email, 
+            'email'     =>  $email,
             'password'  =>  $password,
             'locale'    =>  $locale,
             'response'  =>  $response
         ];
-        
+
         Mail::to($email)->send(new UserConfirmed($data));
     }
 
 
-    public static function sendResponeCompleted($name, $email, $lang){
+    public static function sendResponeCompleted($name, $email, $lang)
+    {
         $data = [
             'name'      =>  $name,
             'email'     =>  $email,
             'locale'      =>  $lang,
-            
+
         ];
         Mail::to($email)->send(new ResponseCompleted($data));
     }
@@ -104,26 +110,38 @@ class MailController extends Controller
 
     //user reset password
 
-    public static function UserResetPassword($name, $email, $lang, $newpassword){
+    public static function UserResetPassword($name, $email, $lang, $newpassword)
+    {
         $data = [
             'name'  =>  $name,
             'email' =>  $email,
             'locale'    =>  $lang,
             'password'  =>  $newpassword,
         ];
+
+
         Mail::to($email)->send(new UserResetPassword($data));
 
+
+        // try {
+        //     Mail::to($email)->send(new UserResetPassword($data));
+        //     dd('success');
+        //     return response()->json(['message' => 'Great! Successfully sent to your mail'], 200);
+        // } catch (\Exception $e) {
+        //     // Handle the exception or log it
+        //     dd($e);
+        //     return response()->json(['message' => 'Sorry! Please try again later'], 500);
+        // }
     }
 
-    public static function sendAdminRsponse($name, $email, $store){
+    public static function sendAdminRsponse($name, $email, $store)
+    {
         $data = [
             'name'  =>  $name,
             'email' =>  $email,
             'store'    =>  $store,
         ];
-        
+
         Mail::to('vutruongduy2109@gmail.com')->send(new AdminResponse($data));
-
     }
-
 }

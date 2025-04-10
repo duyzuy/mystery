@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
     'logout' =>  'Đăng xuất',
     'register'  =>  'Đăng ký',
@@ -21,9 +21,9 @@ return [
         'registration'      =>  'Đăng ký',
         'statusWaitting'    =>  'Đăng ký của bạn đã được duyệt, vui lòng xác nhận qua email và trả lời câu hỏi khảo sát sau khi tham gia',
         'statusCancel'      =>  'Đã huỷ',
-        'statusCompleted'      =>  'Đã hoàn thành đánh giá',   
+        'statusCompleted'      =>  'Đã hoàn thành đánh giá',
     ],
-   
+
     'button'    =>  [
         'takesurvey'    =>  'Hoàn thành bản Khảo sát tại đây',
         'register'      =>  'Đăng ký',
@@ -34,7 +34,7 @@ return [
         'haveNoAccount'   =>  'Chưa có tài khoản, Đăng ký ngay!'
     ],
     'label' =>  [
-        'restaurentName'    =>  'Tên nhà hàng', 
+        'restaurentName'    =>  'Tên nhà hàng',
         'addressTitle'      =>  'Địa chỉ',
         'timeTitle'         =>  'Thời gian vào nhà hàng',
         'managerName'       =>  'Tên quản lý',
@@ -43,7 +43,7 @@ return [
         'timePlaceholder'       =>  'Chọn ngày',
     ],
     'input' =>  [
-        'selectRestaurent'      =>  'Chọn nhà hàng', 
+        'selectRestaurent'      =>  'Chọn nhà hàng',
         'address'               =>  'Địa chỉ cửa hàng',
         'managerName'           =>  'Tên quản lý',
         'staffName'             =>  'Tên nhân viên',
@@ -133,7 +133,7 @@ return [
             '5' =>  [
                 'yes'   => 'Có',
                 'no'    =>  'Không',
-                'yeslabelCheck' =>  'Vui lòng kể tên nhà hàng đó.'  
+                'yeslabelCheck' =>  'Vui lòng kể tên nhà hàng đó.'
             ]
         ],
         'pageLabel'         =>      'Đăng ký',
@@ -142,7 +142,7 @@ return [
         'labelEmail'    =>  'Email',
         'labelPassword' =>  'Mật khẩu',
         'label'         =>  'Đăng nhập'
-    ],   
+    ],
     'survey'    =>  [
         'anotherQuestion'       =>          'Ý kiến khác',
         'buttonSubmit'          =>          'Gửi đánh giá',
@@ -237,7 +237,13 @@ return [
                     '37' =>  'Câu số 37 nội dung đang trống',
                 ]
             ]
-            
+
+        ]
+    ],
+    'confirmation' => [
+        'error' => [
+            'answer'    =>  "Vui lòng lựa chọn 'Có' hoặc 'Không'.",
+            'token'     =>  "Thiếu token."
         ]
     ]
 

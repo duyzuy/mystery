@@ -218,6 +218,7 @@
                                                             type="is-success"
                                                             name="responses[{{ $questionIndex }}][answer_id]"
                                                             class="is-capitalized"
+                                                          
                                                             >
                                                             {{ $answer->translate()->answer }}
                                                         </b-radio>
@@ -355,7 +356,7 @@
                             <div class="field mt-5 mb-5">
                                 <div class="control">
                                     <button type="submit" class="button is-primary">@lang('user.survey.buttonSubmit')</button>
-                                    <button type="button" class="button is-warnning" @click="previewQuestionnaire()">Preview</button>
+                                    <button type="button" class="button is-warnning" @click="previewQuestionnaire">Preview</button>
                                 </div>
                             </div>
                         </div>
@@ -508,6 +509,7 @@ $ii = 0;
             },
             previewQuestionnaire: function(){
                 const vm = this;
+                console.log(vm.restaurantInform)
                 alert(vm.restaurantInform.staffName);
             }
         }

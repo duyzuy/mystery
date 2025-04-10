@@ -3,6 +3,7 @@
       <tr>
         <th>STT</th>
         <th>Tên khách</th>
+        <th>Email</th>
         <th>Số TK</th>
         <th>Tên Ngân hàng</th>
         <th>Chi Nhánh</th>
@@ -16,6 +17,7 @@
         <tr>
             <td>{{ $key + 1 }}</td>
             <td>{{ $survey->user->name }}</td>
+            <td>{{ $survey->user->email }}</td>
             <td>{{ $survey->bank_number }}</td>
             <td>{{ $survey->bank_name }}</td>
             <td>{{ $survey->bank_address }}</td>

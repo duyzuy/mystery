@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
     'storeCityTitle' =>  'City',
     'storeAdressTitle' =>  'Address',
@@ -7,9 +7,9 @@ return [
     ],
     'homePage'  =>  [
         'whatWeneed'    =>  'WHAT WE NEED FROM YOU',
-        'subWhat'       =>  'Here are the basic requirements',  
+        'subWhat'       =>  'Here are the basic requirements',
         'whereWe'       =>  'Where we operate',
-        'howItWork'     =>  'Become a mystery diner'    
+        'howItWork'     =>  'Become a mystery diner'
     ],
     'homeContent'   =>  [
         'howItWork'     =>  [
@@ -26,11 +26,20 @@ return [
         ]
     ],
     'slogan'       =>  [
-            'title'     =>      'Mystery diner',
-            'sub'       =>      'Become a part of our Mystery guest comminity'
+        'title'     =>      'Mystery diner',
+        'sub'       =>      'Become a part of our Mystery guest comminity'
     ],
     'thank'     =>  [
         'content'   =>  'Thank you for your information. If you need more info’s, please send to us via guestsurvey@afg.vn'
-    ]
+    ],
+    'confirmation'     =>  [
+        "title"             =>  "Confirmation appointment registration.",
+        "subTitle"          =>  "Please do confirm the information below.",
+        'cancelButton'      =>  '2) No, that timeline does not suit me, but please send again as I’m still interested.',
+        'confirmButton'     =>  '1) Yes, I can and will do in the timeline.',
+        'storeName'         =>  'Store name',
+        'storeAddress'   =>  'Address',
+        'checkIn'   =>  'Check-in ',
+        'boxTitle'   =>  'Information',
+    ],
 ];
-
